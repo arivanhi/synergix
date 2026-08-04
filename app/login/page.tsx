@@ -2,16 +2,40 @@
 
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { signIn } from "next-auth/react";
+import { useState } from "react";
 import { motion } from "framer-motion";
-import { User, Lock, ArrowLeft, LogIn } from "lucide-react";
+import { User, Lock, ArrowLeft, LogIn, AlertCircle } from "lucide-react";
 
 export default function LoginPage() {
 	const router = useRouter();
+	const [username, setUsername] = useState("");
+	const [password, setPassword] = useState("");
+	const [error, setError] = useState("");
+	const [loading, setLoading] = useState(false);
 
-	const handleLogin = (e: React.FormEvent) => {
+	const handleLogin = async (e: React.FormEvent) => {
 		e.preventDefault();
-		// Simulasi login sukses, langsung arahkan ke dashboard
-		router.push("/admin");
+		setError("");
+		setLoading(true);
+
+		try {
+			const res = await signIn("credentials", {
+				username,
+				password,
+				redirect: false,
+			});
+
+			if (res?.error) {
+				setError("Username atau password salah");
+				setLoading(false);
+			} else {
+				router.push("/admin");
+			}
+		} catch (err) {
+			setError("Terjadi kesalahan sistem");
+			setLoading(false);
+		}
 	};
 
 	return (
@@ -53,6 +77,8 @@ export default function LoginPage() {
 									type="text"
 									placeholder="admin"
 									required
+									value={username}
+									onChange={(e) => setUsername(e.target.value)}
 									className="w-full bg-blue-950/50 border border-blue-800/50 text-white rounded-xl pl-12 pr-4 py-3.5 focus:outline-none focus:ring-2 focus:ring-teal-400 transition-all text-sm placeholder:text-blue-700"
 								/>
 							</div>
@@ -68,16 +94,25 @@ export default function LoginPage() {
 									type="password"
 									placeholder="••••••••"
 									required
+									value={password}
+									onChange={(e) => setPassword(e.target.value)}
 									className="w-full bg-blue-950/50 border border-blue-800/50 text-white rounded-xl pl-12 pr-4 py-3.5 focus:outline-none focus:ring-2 focus:ring-teal-400 transition-all text-sm placeholder:text-blue-700"
 								/>
 							</div>
 						</div>
 
+						{error && (
+							<div className="bg-red-500/20 border border-red-500/50 text-red-200 text-sm p-3 rounded-lg flex items-center gap-2">
+								<AlertCircle size={16} /> {error}
+							</div>
+						)}
+
 						<button
 							type="submit"
-							className="w-full bg-gradient-to-r from-teal-500 to-blue-600 text-white py-4 rounded-xl font-extrabold hover:shadow-lg hover:shadow-teal-500/30 transition-all hover:-translate-y-1 text-sm flex items-center justify-center gap-2 mt-4"
+							disabled={loading}
+							className="w-full bg-gradient-to-r from-teal-500 to-blue-600 text-white py-4 rounded-xl font-extrabold hover:shadow-lg hover:shadow-teal-500/30 transition-all hover:-translate-y-1 text-sm flex items-center justify-center gap-2 mt-4 disabled:opacity-70 disabled:hover:translate-y-0"
 						>
-							<LogIn size={18} /> Masuk ke Dashboard
+							<LogIn size={18} /> {loading ? "Memproses..." : "Masuk ke Dashboard"}
 						</button>
 					</form>
 				</div>

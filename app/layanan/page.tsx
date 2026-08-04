@@ -2,70 +2,16 @@
 
 import Link from "next/link";
 import { useState, useEffect } from "react";
-// Import Icon Monochromatic
-import { MapPin, Phone, Mail, ArrowRight, RefreshCw, Rocket, Cpu, Headset, CheckCircle2 } from "lucide-react";
+import { ArrowRight, RefreshCw, Rocket, Cpu, Headset, CheckCircle2 } from "lucide-react";
+import ClientNavigation from "../components/ClientNavigation";
+import Footer from "../components/Footer";
 
 export default function Layanan() {
-	const [isScrolled, setIsScrolled] = useState(false);
 
-	useEffect(() => {
-		const handleScroll = () => {
-			setIsScrolled(window.scrollY > 50);
-		};
-		window.addEventListener("scroll", handleScroll);
-		return () => window.removeEventListener("scroll", handleScroll);
-	}, []);
-
-	// Struktur Menu Global
-	const navLinks = [
-		{ id: "beranda", label: "Beranda", href: "/" },
-		{ id: "layanan", label: "Layanan", href: "/layanan" },
-		{ id: "tim", label: "Tim", href: "/tim" },
-		{ id: "portofolio", label: "Portofolio", href: "/portofolio" },
-		{ id: "berita", label: "Berita", href: "/berita" },
-		{ id: "magang", label: "Magang", href: "/magang" },
-	];
 
 	return (
 		<main className="min-h-screen bg-gradient-to-br from-[#f4f7fb] to-[#e0f2fe] text-gray-800 font-sans">
-			{/* NAVBAR */}
-			<nav
-				className={`fixed top-0 w-full z-50 transition-all duration-300 ${isScrolled ? "bg-white/80 backdrop-blur-lg shadow-md border-b border-white/40" : "bg-white/50 backdrop-blur-sm border-b border-white/20"}`}
-			>
-				<div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-					<Link href="/" className="flex items-center gap-2">
-						<img src="/logo.png" alt="Logo" className="h-8 object-contain" />
-						<span className="font-bold text-xl text-transparent bg-clip-text bg-gradient-to-r from-blue-900 to-teal-400">
-							SynergX
-						</span>
-					</Link>
-
-					<div className="hidden md:flex gap-6 text-sm font-semibold">
-						{navLinks.map((item) => (
-							<Link
-								key={item.id}
-								href={item.href}
-								className={`transition-all duration-300 ${
-									item.href === "/layanan"
-										? "text-transparent bg-clip-text bg-gradient-to-r from-blue-900 to-teal-500 font-bold scale-105"
-										: "text-gray-500 hover:text-teal-500"
-								}`}
-							>
-								{item.label}
-							</Link>
-						))}
-					</div>
-
-					<div className="hidden md:block">
-						<Link
-							href="/#kontak"
-							className="bg-gradient-to-r from-blue-900 to-teal-500 text-white px-6 py-2.5 rounded-full text-sm font-bold shadow-lg hover:scale-105 transition-all"
-						>
-							Hubungi Kami
-						</Link>
-					</div>
-				</div>
-			</nav>
+			<ClientNavigation />
 
 			{/* HEADER SECTION */}
 			<section className="pt-36 pb-12 px-6 max-w-4xl mx-auto text-center">
@@ -260,56 +206,7 @@ export default function Layanan() {
 				</div>
 			</section>
 
-			{/* FOOTER */}
-			<footer id="kontak" className="relative bg-[url('/footer_image.jpg')] bg-cover bg-center bg-no-repeat mt-12">
-				<div className="absolute inset-0 bg-gradient-to-t from-[#0a192f] via-[#0a192f]/90 to-blue-900/80 backdrop-blur-md"></div>
-				<div className="relative z-10 max-w-7xl mx-auto px-6 py-20 text-white grid grid-cols-1 md:grid-cols-3 gap-16">
-					<div className="space-y-6">
-						<div className="flex items-center gap-3 mb-6">
-							<img src="/logo.png" alt="Logo" className="h-12 object-contain brightness-0 invert" />
-							<span className="font-extrabold text-3xl tracking-tight">SynergX</span>
-						</div>
-						<p className="text-gray-300 leading-relaxed">
-							Mitra terpercaya Anda dalam merekayasa masa depan melalui solusi otomasi dan robotika.
-						</p>
-					</div>
-					<div>
-						<h3 className="font-bold text-xl mb-6 border-b-2 border-teal-500 pb-2 inline-block">Kontak Cepat</h3>
-						<ul className="space-y-5 text-gray-300">
-							<li className="flex items-start gap-4">
-								<MapPin className="text-teal-400 shrink-0" size={24} />
-								<p>
-									Jl. Teknologi No. 123, Kawasan Inovasi
-									<br />
-									Kota Semarang, Jawa Tengah
-								</p>
-							</li>
-							<li className="flex items-center gap-4">
-								<Phone className="text-teal-400 shrink-0" size={20} />
-								<p>+62 812 3456 7890</p>
-							</li>
-							<li className="flex items-center gap-4">
-								<Mail className="text-teal-400 shrink-0" size={20} />
-								<p>info@synergx-robotics.com</p>
-							</li>
-						</ul>
-					</div>
-					<div>
-						<h3 className="font-bold text-xl mb-6 border-b-2 border-teal-500 pb-2 inline-block">Lokasi Kami</h3>
-						<div className="w-full h-56 rounded-2xl overflow-hidden border-2 border-white/20 shadow-2xl">
-							<iframe
-								src="https://www.google.com/maps/embed?..."
-								width="100%"
-								height="100%"
-								style={{ border: 0 }}
-							></iframe>
-						</div>
-					</div>
-				</div>
-				<div className="relative z-10 border-t border-white/10 bg-black/40 text-center py-6 text-sm text-gray-400">
-					&copy; {new Date().getFullYear()} SynergX Robotics. Hak Cipta Dilindungi.
-				</div>
-			</footer>
+			<Footer />
 		</main>
 	);
 }

@@ -25,6 +25,13 @@ enum PeranAnggota {
   ANGGOTA_PERISET
 }
 
+// Status Magang
+enum StatusMagang {
+  MENUNGGU
+  DITERIMA
+  DITOLAK
+}
+
 // --- TABEL / MODEL DATABASE ---
 
 model Berita {
@@ -55,9 +62,13 @@ model Keanggotaan {
   jabatan     String?      // Opsional: Jika ingin menuliskan nama jabatan lebih spesifik (misal: "Kepala Laboratorium")
   
   // Data Profil Ekstra (Menggunakan Text agar admin bisa mengisinya panjang/berupa paragraf)
+  biografi    String?      @db.Text
+  gelar       String?      @db.Text
   pengalaman  String?      @db.Text
-  keahlian    String?      @db.Text
-  publikasi   String?      @db.Text
+  lokasi      String?      @db.Text
+  jumlahPublikasi String?
+  publikasi   Json?
+  riset       Json?
   paten       String?      @db.Text
   
   foto        String?      // Path foto anggota di folder public
@@ -72,6 +83,43 @@ model Admin {
   username  String   @unique
   password  String   // Nanti password ini akan kita Hash (misal pakai bcrypt) demi keamanan
   nama      String
+  
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Testimoni {
+  id        Int      @id @default(autoincrement())
+  nama      String
+  jabatan   String
+  teks      String   @db.Text
+  foto      String?
+  
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model PendaftarMagang {
+  id          Int          @id @default(autoincrement())
+  nama        String
+  email       String
+  asalSekolah String
+  nisn        String?
+  jurusan     String?
+  durasi      String?
+  motivasi    String?      @db.Text
+  status      StatusMagang @default(MENUNGGU)
+  suratRekomendasi String?
+  createdAt   DateTime     @default(now())
+  updatedAt   DateTime     @updatedAt
+}
+
+model Layanan {
+  id        Int      @id @default(autoincrement())
+  judul     String
+  deskripsi String   @db.Text
+  ikon      String?
+  gambar    String?
   
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
