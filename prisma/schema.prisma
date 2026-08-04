@@ -1,0 +1,78 @@
+// prisma/schema.prisma
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+// --- ENUMERASI (Pilihan Tetap) ---
+
+// Kategori untuk Produk
+enum KategoriProduk {
+  PRODUK_BUATAN
+  CAPSTONE_DESIGN
+  PATEN
+}
+
+// Peran untuk Keanggotaan
+enum PeranAnggota {
+  PIMPINAN
+  KETUA
+  ANGGOTA_PERISET
+}
+
+// --- TABEL / MODEL DATABASE ---
+
+model Berita {
+  id        Int      @id @default(autoincrement())
+  judul     String
+  konten    String   @db.Text // Menggunakan Text agar bisa menampung artikel panjang
+  gambar    String?  // Path/URL foto (opsional, menggunakan tanda '?')
+  
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Produk {
+  id          Int            @id @default(autoincrement())
+  nama        String
+  deskripsi   String?        @db.Text
+  kategori    KategoriProduk // Menggunakan Enum agar pilihannya pasti (Produk Buatan/Capstone/Paten)
+  gambar      String?        // Path foto produk di folder public
+  
+  createdAt   DateTime       @default(now())
+  updatedAt   DateTime       @updatedAt
+}
+
+model Keanggotaan {
+  id          Int          @id @default(autoincrement())
+  nama        String
+  peran       PeranAnggota // Kategori: Pimpinan, Ketua, atau Anggota
+  jabatan     String?      // Opsional: Jika ingin menuliskan nama jabatan lebih spesifik (misal: "Kepala Laboratorium")
+  
+  // Data Profil Ekstra (Menggunakan Text agar admin bisa mengisinya panjang/berupa paragraf)
+  pengalaman  String?      @db.Text
+  keahlian    String?      @db.Text
+  publikasi   String?      @db.Text
+  paten       String?      @db.Text
+  
+  foto        String?      // Path foto anggota di folder public
+  
+  createdAt   DateTime     @default(now())
+  updatedAt   DateTime     @updatedAt
+}
+
+// Tabel tambahan untuk keperluan Login Admin / CRM
+model Admin {
+  id        Int      @id @default(autoincrement())
+  username  String   @unique
+  password  String   // Nanti password ini akan kita Hash (misal pakai bcrypt) demi keamanan
+  nama      String
+  
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
