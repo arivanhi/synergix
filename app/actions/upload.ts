@@ -5,9 +5,17 @@ import path from "path";
 
 export async function uploadImage(formData: FormData): Promise<{ url?: string; error?: string }> {
 	try {
-		const file = formData.get("file") as File;
+		const file = formData.get("file") as File | null;
 		if (!file) {
 			return { error: "File tidak ditemukan" };
+		}
+
+		if (typeof file === "string") {
+			return { error: "File dikirim sebagai string, bukan file object" };
+		}
+
+		if (!file.arrayBuffer) {
+			return { error: "File tidak memiliki method arrayBuffer" };
 		}
 
 		const bytes = await file.arrayBuffer();
@@ -15,7 +23,8 @@ export async function uploadImage(formData: FormData): Promise<{ url?: string; e
 
 		// Buat nama file unik (cegah penimpaan nama yang sama)
 		const timestamp = Date.now();
-		const safeName = file.name.replace(/[^a-zA-Z0-9.\-_]/g, "_");
+		const originalName = file.name || "image.png";
+		const safeName = originalName.replace(/[^a-zA-Z0-9.\-_]/g, "_");
 		const filename = `${timestamp}-${safeName}`;
 		
 		// Pastikan folder uploads ada (di dalam public)
@@ -31,10 +40,10 @@ export async function uploadImage(formData: FormData): Promise<{ url?: string; e
 		// Simpan file
 		await fs.writeFile(filepath, buffer);
 		
-		// Kembalikan URL publik
-		return { url: `/uploads/${filename}` };
-	} catch (error) {
+		// Kembalikan URL publik via API route agar gambar dinamis bisa langsung dimuat
+		return { url: `/api/uploads/${filename}` };
+	} catch (error: any) {
 		console.error("Gagal mengunggah gambar:", error);
-		return { error: "Terjadi kesalahan saat mengunggah gambar" };
+		return { error: `Terjadi kesalahan saat mengunggah gambar: ${error.message || String(error)}` };
 	}
 }
