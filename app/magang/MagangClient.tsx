@@ -1,11 +1,11 @@
 "use client";
 
 import { useState, useRef } from "react";
-import { uploadImage } from "../actions/upload"; 
+import { uploadImage } from "../actions/upload";
 import { submitMagang } from "../actions/submitMagang";
-import { 
-	Loader2, UploadCloud, CheckCircle, X, FileUp, 
-	Award, BookOpen, Settings, User, Building, Map, GraduationCap 
+import {
+	Loader2, UploadCloud, CheckCircle, X, FileUp,
+	Award, BookOpen, Settings, User, Building, Map, GraduationCap
 } from "lucide-react";
 
 export default function MagangClient() {
@@ -16,12 +16,12 @@ export default function MagangClient() {
 	const [email, setEmail] = useState("");
 	const [durasi, setDurasi] = useState("3 Bulan");
 	const [motivasi, setMotivasi] = useState("");
-	
+
 	const [file, setFile] = useState<File | null>(null);
 	const [loading, setLoading] = useState(false);
 	const [success, setSuccess] = useState(false);
 	const [error, setError] = useState("");
-	
+
 	const [isModalOpen, setIsModalOpen] = useState(false);
 	const [isDragging, setIsDragging] = useState(false);
 	const fileInputRef = useRef<HTMLInputElement>(null);
@@ -71,10 +71,10 @@ export default function MagangClient() {
 				fileUrl = uploadRes.url;
 			}
 
-			const res = await submitMagang({ 
-				nama, email, asalSekolah, nisn, jurusan, durasi, motivasi, suratRekomendasi: fileUrl 
+			const res = await submitMagang({
+				nama, email, asalSekolah, nisn, jurusan, durasi, motivasi, suratRekomendasi: fileUrl
 			});
-			
+
 			if (res.error) {
 				setError(res.error);
 			} else {
@@ -85,7 +85,7 @@ export default function MagangClient() {
 		} catch (err) {
 			setError("Terjadi kesalahan sistem. Silakan coba lagi.");
 		}
-		
+
 		setLoading(false);
 	};
 
@@ -97,7 +97,7 @@ export default function MagangClient() {
 				</div>
 				<h2 className="text-3xl font-extrabold text-blue-950 mb-4">Lamaran Terkirim!</h2>
 				<p className="text-gray-600 mb-8 leading-relaxed">
-					Terima kasih telah mendaftar di program Magang Robotika SynergX. Kami akan meninjau lamaran Anda dan segera menghubungi Anda melalui email.
+					Terima kasih telah mendaftar di program Magang Robotika SynergiX. Kami akan meninjau lamaran Anda dan segera menghubungi Anda melalui email.
 				</p>
 				<button onClick={() => setSuccess(false)} className="bg-[#005a9c] hover:bg-[#004a80] text-white font-bold py-3 px-8 rounded-xl transition-all">
 					Kirim Lamaran Lain
@@ -108,7 +108,7 @@ export default function MagangClient() {
 
 	return (
 		<div className="text-left w-full max-w-7xl mx-auto">
-			
+
 			{/* HERO HEADER */}
 			<div className="text-center max-w-3xl mx-auto mb-16 pt-6">
 				<div className="inline-block bg-[#e0f2fe] text-[#005a9c] text-xs font-bold px-3 py-1 rounded-full mb-6 uppercase tracking-wider">
@@ -118,7 +118,7 @@ export default function MagangClient() {
 					Mulai Karir Robotika Anda
 				</h1>
 				<p className="text-gray-500 text-lg md:text-xl font-medium leading-relaxed">
-					Bergabunglah dengan program magang industri imersif SynergX yang dirancang khusus untuk siswa Sekolah Menengah Kejuruan (SMK). Dapatkan pengalaman langsung dengan teknologi otomasi mutakhir.
+					Bergabunglah dengan program magang industri imersif SynergiX yang dirancang khusus untuk siswa Sekolah Menengah Kejuruan (SMK). Dapatkan pengalaman langsung dengan teknologi otomasi mutakhir.
 				</p>
 			</div>
 
@@ -126,7 +126,7 @@ export default function MagangClient() {
 			<div className="mb-20">
 				<h2 className="text-2xl font-bold text-[#001738] mb-8 text-center">Mengapa Magang Bersama Kami?</h2>
 				<div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-					
+
 					{/* Card 1: Large Image (Span 2) */}
 					<div className="md:col-span-2 relative rounded-3xl overflow-hidden min-h-[280px] shadow-sm group">
 						<img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=1200&q=80" alt="Industrial Equipment" className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
@@ -182,11 +182,11 @@ export default function MagangClient() {
 
 			{/* BOTTOM SECTION: TIMELINE & FORM */}
 			<div className="flex flex-col lg:flex-row gap-12 mt-10">
-				
+
 				{/* LEFT: Application Process Timeline */}
 				<div className="lg:w-1/3">
 					<h3 className="text-lg font-bold text-[#001738] mb-8">Proses Pendaftaran</h3>
-					
+
 					<div className="relative border-l-2 border-gray-200 ml-3 pl-8 pb-4 space-y-10">
 						<div className="relative">
 							<div className="absolute -left-[41px] top-1 w-5 h-5 bg-[#00a8ff] rounded-full border-4 border-white shadow-sm ring-1 ring-gray-100"></div>
@@ -206,7 +206,7 @@ export default function MagangClient() {
 						<div className="relative">
 							<div className="absolute -left-[41px] top-1 w-5 h-5 bg-gray-200 rounded-full border-4 border-white shadow-sm ring-1 ring-gray-100"></div>
 							<h4 className="font-bold text-[#001738] text-sm">4. Onboarding</h4>
-							<p className="text-gray-500 text-xs mt-1 leading-relaxed">Selamat datang di SynergX! Ikuti pengarahan orientasi program magang.</p>
+							<p className="text-gray-500 text-xs mt-1 leading-relaxed">Selamat datang di SynergiX! Ikuti pengarahan orientasi program magang.</p>
 						</div>
 					</div>
 				</div>
@@ -280,7 +280,7 @@ export default function MagangClient() {
 						<div className="grid grid-cols-1 md:grid-cols-2 gap-5">
 							<div>
 								<label className="block text-xs font-bold text-gray-700 mb-1.5">Durasi Magang</label>
-								<select 
+								<select
 									value={durasi} onChange={(e) => setDurasi(e.target.value)}
 									className="w-full border border-gray-200 text-gray-900 text-sm rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500/50 appearance-none bg-white cursor-pointer"
 								>
@@ -308,7 +308,7 @@ export default function MagangClient() {
 
 						{/* Interest */}
 						<div>
-							<label className="block text-xs font-bold text-gray-700 mb-1.5">Mengapa Anda ingin magang di SynergX?</label>
+							<label className="block text-xs font-bold text-gray-700 mb-1.5">Mengapa Anda ingin magang di SynergiX?</label>
 							<textarea
 								required rows={4}
 								value={motivasi} onChange={(e) => setMotivasi(e.target.value)}
@@ -338,25 +338,24 @@ export default function MagangClient() {
 			{isModalOpen && (
 				<div className="fixed inset-0 z-[100] flex items-center justify-center bg-[#001738]/40 backdrop-blur-sm p-6">
 					<div className="bg-white rounded-3xl shadow-2xl w-full max-w-md overflow-hidden relative">
-						<button 
+						<button
 							onClick={() => setIsModalOpen(false)}
 							className="absolute top-4 right-4 text-gray-400 hover:text-red-500 transition-colors"
 						>
 							<X size={20} />
 						</button>
-						
+
 						<div className="p-8 text-center mt-2">
 							<h3 className="text-xl font-bold text-[#001738] mb-1">Unggah Dokumen</h3>
 							<p className="text-gray-500 text-xs mb-6">Format didukung: PDF, JPG, PNG (Maks 5MB).</p>
-							
+
 							<div
 								onDragOver={handleDragOver}
 								onDragLeave={handleDragLeave}
 								onDrop={handleDrop}
 								onClick={() => fileInputRef.current?.click()}
-								className={`border-2 border-dashed rounded-2xl p-10 cursor-pointer transition-all ${
-									isDragging ? "border-blue-500 bg-blue-50" : "border-gray-200 hover:border-blue-400 hover:bg-slate-50"
-								}`}
+								className={`border-2 border-dashed rounded-2xl p-10 cursor-pointer transition-all ${isDragging ? "border-blue-500 bg-blue-50" : "border-gray-200 hover:border-blue-400 hover:bg-slate-50"
+									}`}
 							>
 								<div className="flex flex-col items-center justify-center pointer-events-none">
 									<div className={`w-14 h-14 rounded-full flex items-center justify-center mb-4 transition-colors ${isDragging ? "bg-blue-100 text-blue-600" : "bg-gray-100 text-gray-400"}`}>
@@ -365,10 +364,10 @@ export default function MagangClient() {
 									<p className="font-bold text-[#001738] text-sm mb-1">Tarik & Lepas file di sini</p>
 									<p className="text-gray-500 text-xs">atau klik untuk mencari dari perangkat</p>
 								</div>
-								
-								<input 
-									type="file" 
-									className="hidden" 
+
+								<input
+									type="file"
+									className="hidden"
 									ref={fileInputRef}
 									accept=".pdf,image/*"
 									onChange={handleFileSelect}

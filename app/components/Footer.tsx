@@ -8,7 +8,7 @@ export default function Footer() {
 				<div className="space-y-6">
 					<div className="flex items-center gap-3 mb-6">
 						<img src="/logo.png" alt="Logo" className="h-12 object-contain brightness-0 invert" />
-						<span className="font-extrabold text-3xl tracking-tight">SynergX</span>
+						<span className="font-extrabold text-3xl tracking-tight">SynergiX</span>
 					</div>
 					<p className="text-gray-300 leading-relaxed">
 						Mitra terpercaya Anda dalam merekayasa masa depan melalui solusi otomasi dan robotika.
@@ -32,7 +32,7 @@ export default function Footer() {
 						</li>
 						<li className="flex items-center gap-4">
 							<Mail className="text-teal-400 shrink-0" size={20} />
-							<p>info@synergx-robotics.com</p>
+							<p>info@synergix-robotics.com</p>
 						</li>
 					</ul>
 				</div>
@@ -50,7 +50,7 @@ export default function Footer() {
 				</div>
 			</div>
 			<div className="relative z-10 border-t border-white/10 bg-black/40 text-center py-6 text-sm text-gray-400 font-medium">
-				&copy; {new Date().getFullYear()} SynergX Robotics. Hak Cipta Dilindungi.
+				&copy; {new Date().getFullYear()} SynergiX Robotics. Hak Cipta Dilindungi.
 			</div>
 		</footer>
 	);

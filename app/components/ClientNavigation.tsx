@@ -33,7 +33,7 @@ export default function ClientNavigation() {
 				<Link href="/" className="flex items-center gap-2">
 					<img src="/logo.png" alt="Logo" className="h-8 object-contain" />
 					<span className="font-bold text-xl text-transparent bg-clip-text bg-gradient-to-r from-blue-900 to-teal-400">
-						SynergX
+						SynergiX
 					</span>
 				</Link>
 
@@ -41,16 +41,15 @@ export default function ClientNavigation() {
 					{navLinks.map((item) => {
 						// Highlight jika berada di halaman tersebut
 						const isActive = pathname === item.href;
-						
+
 						return (
 							<Link
 								key={item.id}
 								href={item.href}
-								className={`transition-all duration-300 ${
-									isActive
+								className={`transition-all duration-300 ${isActive
 										? "text-transparent bg-clip-text bg-gradient-to-r from-blue-900 to-teal-500 font-bold scale-105"
 										: "text-gray-500 hover:text-teal-500"
-								}`}
+									}`}
 							>
 								{item.label}
 							</Link>

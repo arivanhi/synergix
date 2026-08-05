@@ -41,13 +41,13 @@ async function main() {
   await prisma.berita.createMany({
     data: [
       {
-        judul: "SynergX Meluncurkan Lengan Robotika Tercepat di Kelasnya",
-        konten: "Lengan robot terbaru dari SynergX memiliki tingkat presisi dan kecepatan luar biasa yang dapat mempercepat produksi hingga 40%. Inovasi ini diperkenalkan pada eksebisi teknologi industri bulan lalu.",
+        judul: "SynergiX Meluncurkan Lengan Robotika Tercepat di Kelasnya",
+        konten: "Lengan robot terbaru dari SynergiX memiliki tingkat presisi dan kecepatan luar biasa yang dapat mempercepat produksi hingga 40%. Inovasi ini diperkenalkan pada eksebisi teknologi industri bulan lalu.",
         gambar: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=800&q=80"
       },
       {
         judul: "Membangun Kolaborasi dengan SMK di Jawa Tengah",
-        konten: "Demi meningkatkan serapan tenaga kerja, SynergX menandatangani MoU dengan berbagai SMK di Jawa Tengah untuk program magang dan pengembangan kurikulum Mekatronika.",
+        konten: "Demi meningkatkan serapan tenaga kerja, SynergiX menandatangani MoU dengan berbagai SMK di Jawa Tengah untuk program magang dan pengembangan kurikulum Mekatronika.",
         gambar: "https://images.unsplash.com/photo-1531482615713-2afd69097998?w=800&q=80"
       }
     ]
@@ -139,13 +139,13 @@ async function main() {
       {
         nama: "Hendrik Gunawan",
         jabatan: "Manajer Operasional PT Inovasi",
-        teks: "Sistem SPM buatan SynergX Robotics mengubah cara kerja pabrik kami. Efisiensi melonjak hingga 60% dengan cacat produk yang minim.",
+        teks: "Sistem SPM buatan SynergiX Robotics mengubah cara kerja pabrik kami. Efisiensi melonjak hingga 60% dengan cacat produk yang minim.",
         foto: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&q=80"
       },
       {
         nama: "Siti Aisyah",
         jabatan: "Kepala Sekolah SMK N 1 Teknologi",
-        teks: "Kerja sama magang dengan SynergX memberikan wawasan langsung kepada para siswa tentang ekosistem industri 4.0 yang sesungguhnya.",
+        teks: "Kerja sama magang dengan SynergiX memberikan wawasan langsung kepada para siswa tentang ekosistem industri 4.0 yang sesungguhnya.",
         foto: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=800&q=80"
       }
     ]

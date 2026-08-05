@@ -50,7 +50,7 @@ export default function AdminLayout({ children, user }: AdminLayoutProps) {
 				<div className="h-20 flex items-center px-8 border-b border-gray-50">
 					<Link href="/" className="flex items-center gap-2">
 						<img src="/logo.png" alt="Logo" className="h-7 object-contain" />
-						<span className="font-extrabold text-xl text-blue-950 tracking-tight">SynergX</span>
+						<span className="font-extrabold text-xl text-blue-950 tracking-tight">SynergiX</span>
 					</Link>
 				</div>
 
@@ -59,11 +59,10 @@ export default function AdminLayout({ children, user }: AdminLayoutProps) {
 						<Link
 							key={item.path}
 							href={item.path}
-							className={`flex items-center gap-3 px-4 py-3 rounded-xl font-medium transition-colors ${
-								isActive(item.path)
+							className={`flex items-center gap-3 px-4 py-3 rounded-xl font-medium transition-colors ${isActive(item.path)
 									? "bg-blue-50 text-blue-700 font-bold"
 									: "text-gray-500 hover:bg-gray-50 hover:text-gray-900"
-							}`}
+								}`}
 						>
 							<item.icon size={20} />
 							<span>{item.name}</span>

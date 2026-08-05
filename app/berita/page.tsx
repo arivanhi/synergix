@@ -19,9 +19,9 @@ export default async function BeritaPage() {
 					Berita & Artikel
 				</h1>
 				<p className="text-gray-600 text-lg mb-12 max-w-2xl mx-auto">
-					Informasi terbaru, publikasi, dan pencapaian dari SynergX Robotics.
+					Informasi terbaru, publikasi, dan pencapaian dari SynergiX Robotics.
 				</p>
-				
+
 				{beritaData.length > 0 ? (
 					<div className="grid grid-cols-1 md:grid-cols-3 gap-8">
 						{beritaData.map((berita) => (

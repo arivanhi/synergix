@@ -105,7 +105,7 @@ export default function Layanan() {
 			{/* KEUNGGULAN */}
 			<section className="py-20 px-6 max-w-7xl mx-auto text-center">
 				<h2 className="text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-900 to-teal-400 mb-12">
-					Keunggulan SynergX
+					Keunggulan SynergiX
 				</h2>
 				<div className="grid grid-cols-1 md:grid-cols-3 gap-8">
 					{[

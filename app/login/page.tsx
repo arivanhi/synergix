@@ -60,10 +60,10 @@ export default function LoginPage() {
 				<div className="bg-white/10 backdrop-blur-2xl border border-white/20 p-10 rounded-[2.5rem] shadow-2xl">
 					<div className="flex flex-col items-center mb-10">
 						<div className="bg-white p-3 rounded-2xl shadow-lg mb-4">
-							<img src="/logo.png" alt="SynergX Logo" className="h-10 object-contain" />
+							<img src="/logo.png" alt="SynergiX Logo" className="h-10 object-contain" />
 						</div>
 						<h1 className="text-3xl font-extrabold text-white mb-2">Admin Portal</h1>
-						<p className="text-blue-200 text-sm text-center">Silakan masuk untuk mengelola sistem CRM SynergX.</p>
+						<p className="text-blue-200 text-sm text-center">Silakan masuk untuk mengelola sistem CRM SynergiX.</p>
 					</div>
 
 					<form onSubmit={handleLogin} className="space-y-6">

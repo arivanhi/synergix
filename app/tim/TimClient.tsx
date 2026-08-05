@@ -26,7 +26,7 @@ export default function TimClient({ pimpinanData, anggotaData }: { pimpinanData:
 			>
 				<h1 className="text-4xl md:text-5xl font-extrabold leading-tight text-blue-950 mb-6">
 					Mengenal Tim Ahli{" "}
-					<span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-900 to-teal-400">SynergX</span>
+					<span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-900 to-teal-400">SynergiX</span>
 				</h1>
 				<p className="text-gray-600 text-lg leading-relaxed">
 					Tim Pusat Robotika Digital membawa keahlian kelas dunia dalam AI, teknik mesin, dan arsitektur perangkat lunak
