@@ -20,5 +20,18 @@ export default async function ProfilDetail({ params }: { params: Promise<{ id: s
 		notFound();
 	}
 
-	return <TimDetailClient profilData={profilData} />;
+	// Fetch previous and next items
+	const prevItem = await prisma.keanggotaan.findFirst({
+		where: { id: { lt: id } },
+		orderBy: { id: 'desc' },
+		select: { id: true, nama: true }
+	});
+	
+	const nextItem = await prisma.keanggotaan.findFirst({
+		where: { id: { gt: id } },
+		orderBy: { id: 'asc' },
+		select: { id: true, nama: true }
+	});
+
+	return <TimDetailClient profilData={profilData} prevItem={prevItem} nextItem={nextItem} />;
 }

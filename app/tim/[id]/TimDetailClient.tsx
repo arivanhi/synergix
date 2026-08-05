@@ -5,7 +5,7 @@ import { ArrowLeft, User, Mail, Calendar, ExternalLink, Beaker, FileText, Contac
 import ClientNavigation from "../../components/ClientNavigation";
 import Footer from "../../components/Footer";
 
-export default function TimDetailClient({ profilData }: { profilData: any }) {
+export default function TimDetailClient({ profilData, prevItem, nextItem }: { profilData: any; prevItem?: { id: number, nama: string } | null; nextItem?: { id: number, nama: string } | null }) {
 	// Parsing JSON riset dan publikasi
 	const riset = Array.isArray(profilData.riset) ? profilData.riset : [];
 	const publikasi = Array.isArray(profilData.publikasi) ? profilData.publikasi : [];
@@ -168,6 +168,23 @@ export default function TimDetailClient({ profilData }: { profilData: any }) {
 
 						</div>
 
+					</div>
+
+					{/* Navigation Prev / Next */}
+					<div className="grid grid-cols-2 gap-4 mt-4 mb-8">
+						{prevItem ? (
+							<Link href={`/tim/${prevItem.id}`} className="group flex flex-col p-4 bg-white rounded-3xl shadow-sm border border-gray-100 hover:bg-teal-50 hover:border-teal-100 transition-colors">
+								<span className="text-xs text-gray-500 font-semibold mb-1 flex items-center gap-1"><ArrowLeft size={14}/> Sebelumnya</span>
+								<span className="font-bold text-gray-900 group-hover:text-[#005a9c] line-clamp-2">{prevItem.nama}</span>
+							</Link>
+						) : <div></div>}
+						
+						{nextItem ? (
+							<Link href={`/tim/${nextItem.id}`} className="group flex flex-col p-4 bg-white rounded-3xl shadow-sm border border-gray-100 hover:bg-teal-50 hover:border-teal-100 transition-colors text-right items-end">
+								<span className="text-xs text-gray-500 font-semibold mb-1 flex items-center gap-1">Selanjutnya <ArrowLeft size={14} className="rotate-180"/></span>
+								<span className="font-bold text-gray-900 group-hover:text-[#005a9c] line-clamp-2">{nextItem.nama}</span>
+							</Link>
+						) : <div></div>}
 					</div>
 
 				</div>

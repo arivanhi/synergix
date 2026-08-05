@@ -18,6 +18,19 @@ export default async function PortofolioDetail({ params }: { params: Promise<{ i
 
 	if (!produk) notFound();
 
+	// Fetch previous and next items
+	const prevItem = await prisma.produk.findFirst({
+		where: { id: { lt: id } },
+		orderBy: { id: 'desc' },
+		select: { id: true, nama: true }
+	});
+	
+	const nextItem = await prisma.produk.findFirst({
+		where: { id: { gt: id } },
+		orderBy: { id: 'asc' },
+		select: { id: true, nama: true }
+	});
+
 	return (
 		<main className="min-h-screen bg-gradient-to-br from-[#f4f7fb] to-[#e0f2fe] text-gray-800 font-sans pt-28">
 			<ClientNavigation />
@@ -56,6 +69,23 @@ export default async function PortofolioDetail({ params }: { params: Promise<{ i
 						
 						<div className="prose prose-lg text-gray-700 max-w-none">
 							<p className="whitespace-pre-wrap leading-relaxed">{produk.deskripsi}</p>
+						</div>
+
+						{/* Navigation Prev / Next */}
+						<div className="grid grid-cols-2 gap-4 mt-12 border-t border-gray-100 pt-8">
+							{prevItem ? (
+								<Link href={`/portofolio/${prevItem.id}`} className="group flex flex-col p-4 bg-gray-50 rounded-2xl hover:bg-teal-50 transition-colors border border-transparent hover:border-teal-100">
+									<span className="text-xs text-gray-500 font-semibold mb-1 flex items-center gap-1"><ArrowLeft size={14}/> Sebelumnya</span>
+									<span className="font-bold text-gray-900 group-hover:text-teal-700 line-clamp-2">{prevItem.nama}</span>
+								</Link>
+							) : <div></div>}
+							
+							{nextItem ? (
+								<Link href={`/portofolio/${nextItem.id}`} className="group flex flex-col p-4 bg-gray-50 rounded-2xl hover:bg-teal-50 transition-colors text-right items-end border border-transparent hover:border-teal-100">
+									<span className="text-xs text-gray-500 font-semibold mb-1 flex items-center gap-1">Selanjutnya <ArrowLeft size={14} className="rotate-180"/></span>
+									<span className="font-bold text-gray-900 group-hover:text-teal-700 line-clamp-2">{nextItem.nama}</span>
+								</Link>
+							) : <div></div>}
 						</div>
 					</div>
 				</div>

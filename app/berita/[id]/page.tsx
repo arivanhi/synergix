@@ -18,6 +18,19 @@ export default async function BeritaDetail({ params }: { params: Promise<{ id: s
 
 	if (!berita) notFound();
 
+	// Fetch previous and next items
+	const prevItem = await prisma.berita.findFirst({
+		where: { id: { lt: id } },
+		orderBy: { id: 'desc' },
+		select: { id: true, judul: true }
+	});
+	
+	const nextItem = await prisma.berita.findFirst({
+		where: { id: { gt: id } },
+		orderBy: { id: 'asc' },
+		select: { id: true, judul: true }
+	});
+
 	return (
 		<main className="min-h-screen bg-gradient-to-br from-[#f4f7fb] to-[#e0f2fe] text-gray-800 font-sans pt-28">
 			<ClientNavigation />
@@ -51,6 +64,23 @@ export default async function BeritaDetail({ params }: { params: Promise<{ id: s
 						
 						<div className="prose prose-lg text-gray-700 max-w-none">
 							<p className="whitespace-pre-wrap leading-relaxed">{berita.konten}</p>
+						</div>
+
+						{/* Navigation Prev / Next */}
+						<div className="grid grid-cols-2 gap-4 mt-12 border-t border-gray-100 pt-8">
+							{prevItem ? (
+								<Link href={`/berita/${prevItem.id}`} className="group flex flex-col p-4 bg-gray-50 rounded-2xl hover:bg-teal-50 transition-colors border border-transparent hover:border-teal-100">
+									<span className="text-xs text-gray-500 font-semibold mb-1 flex items-center gap-1"><ArrowLeft size={14}/> Sebelumnya</span>
+									<span className="font-bold text-gray-900 group-hover:text-teal-700 line-clamp-2">{prevItem.judul}</span>
+								</Link>
+							) : <div></div>}
+							
+							{nextItem ? (
+								<Link href={`/berita/${nextItem.id}`} className="group flex flex-col p-4 bg-gray-50 rounded-2xl hover:bg-teal-50 transition-colors text-right items-end border border-transparent hover:border-teal-100">
+									<span className="text-xs text-gray-500 font-semibold mb-1 flex items-center gap-1">Selanjutnya <ArrowLeft size={14} className="rotate-180"/></span>
+									<span className="font-bold text-gray-900 group-hover:text-teal-700 line-clamp-2">{nextItem.judul}</span>
+								</Link>
+							) : <div></div>}
 						</div>
 					</div>
 				</div>
