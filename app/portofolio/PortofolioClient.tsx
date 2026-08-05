@@ -4,6 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import { motion } from "framer-motion";
+import CardCarousel from "../components/CardCarousel";
 
 export default function PortofolioClient({ allItems }: { allItems: any[] }) {
 	const [activeTab, setActiveTab] = useState("Semua");
@@ -46,51 +47,28 @@ export default function PortofolioClient({ allItems }: { allItems: any[] }) {
 						<h2 className="text-2xl font-bold">Capstone Design</h2>
 					</div>
 					
-					<div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-						{/* Large Left Card */}
-						{mainCapstone && (
-							<div className="md:col-span-2 relative bg-white rounded-3xl overflow-hidden shadow-sm border border-gray-100 min-h-[400px] flex flex-col justify-end p-8 group">
-								{mainCapstone.gambar ? (
-									<img src={mainCapstone.gambar} alt={mainCapstone.nama} className="absolute inset-0 w-full h-full object-cover opacity-20 transition-transform duration-700 group-hover:scale-105" />
-								) : (
-									<div className="absolute inset-0 bg-gradient-to-br from-slate-100 to-slate-200"></div>
-								)}
-								<div className="absolute inset-0 bg-gradient-to-t from-white/90 via-white/50 to-transparent"></div>
-								
-								<div className="relative z-10 max-w-lg">
-									<span className="inline-block bg-[#e0f2fe] text-[#005a9c] text-xs font-bold px-3 py-1 rounded-full mb-4 shadow-sm border border-blue-100">
-										Robotics
-									</span>
-									<h3 className="text-3xl font-bold text-[#001738] mb-3">{mainCapstone.nama}</h3>
-									<p className="text-gray-600 text-sm leading-relaxed mb-6 line-clamp-3">
-										{mainCapstone.deskripsi}
-									</p>
-									<Link href={`/portofolio/${mainCapstone.id}`} className="text-[#005a9c] font-bold text-sm flex items-center gap-1 hover:underline">
-										Lihat Detail <ArrowUpRight size={16} />
-									</Link>
-								</div>
-							</div>
-						)}
-
-						{/* Small Right Cards */}
-						<div className="flex flex-col gap-6">
-							{sideCapstones.map((item, idx) => (
-								<div key={item.id} className="bg-white rounded-3xl p-8 shadow-sm border border-gray-100 flex-1 flex flex-col justify-center relative group hover:shadow-md transition-shadow">
-									<span className="inline-block bg-[#e0f2fe] text-[#005a9c] text-xs font-bold px-3 py-1 rounded-full mb-4 w-max shadow-sm border border-blue-100">
-										{idx === 0 ? "AI Integration" : "Sensor Tech"}
-									</span>
-									<h3 className="text-xl font-bold text-[#001738] mb-6">{item.nama}</h3>
-									<Link href={`/portofolio/${item.id}`} className="mt-auto text-[#005a9c] font-bold text-sm flex items-center gap-1 hover:underline">
-										Lihat Detail <ArrowUpRight size={16} />
-									</Link>
+					<div className="max-w-6xl mx-auto">
+						<CardCarousel>
+							{capstoneItems.map((item) => (
+								<div key={item.id} className="w-full sm:w-[calc(50%-12px)] shrink-0 snap-start bg-white rounded-3xl p-8 shadow-sm border border-gray-100 flex flex-col justify-center relative group hover:shadow-md transition-shadow min-h-[300px]">
+									{item.gambar && (
+										<img src={item.gambar} alt={item.nama} className="absolute inset-0 w-full h-full object-cover opacity-10 transition-transform duration-700 group-hover:scale-105 rounded-3xl" />
+									)}
+									<div className="relative z-10 flex flex-col h-full">
+										<span className="inline-block bg-[#e0f2fe] text-[#005a9c] text-xs font-bold px-3 py-1 rounded-full mb-4 w-max shadow-sm border border-blue-100">
+											Robotics
+										</span>
+										<h3 className="text-2xl font-bold text-[#001738] mb-4">{item.nama}</h3>
+										<p className="text-gray-600 text-sm leading-relaxed mb-6 line-clamp-3">
+											{item.deskripsi}
+										</p>
+										<Link href={`/portofolio/${item.id}`} className="mt-auto text-[#005a9c] font-bold text-sm flex items-center gap-1 hover:underline">
+											Lihat Detail <ArrowUpRight size={16} />
+										</Link>
+									</div>
 								</div>
 							))}
-							{sideCapstones.length === 0 && (
-								<div className="bg-slate-50/50 rounded-3xl p-8 border border-dashed border-gray-200 flex-1 flex items-center justify-center text-gray-400 text-sm">
-									Karya capstone lainnya segera hadir...
-								</div>
-							)}
-						</div>
+						</CardCarousel>
 					</div>
 				</div>
 			)}
@@ -119,51 +97,54 @@ export default function PortofolioClient({ allItems }: { allItems: any[] }) {
 				</div>
 
 				{/* Grid */}
-				<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
-					{filteredWorks.map((item) => (
-						<motion.div
-							layout
-							initial={{ opacity: 0, y: 20 }}
-							animate={{ opacity: 1, y: 0 }}
-							exit={{ opacity: 0, scale: 0.95 }}
-							transition={{ duration: 0.3 }}
-							key={item.id}
-							className="bg-white rounded-2xl p-4 shadow-sm border border-gray-100 flex flex-col hover:shadow-md transition-shadow"
-						>
-							<div className="bg-gray-100 w-full h-40 rounded-xl mb-4 overflow-hidden">
-								{item.gambar ? (
-									<img src={item.gambar} alt={item.nama} className="w-full h-full object-cover" />
-								) : (
-									<div className="w-full h-full flex items-center justify-center text-gray-300">
-										<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><line x1="10" y1="9" x2="8" y2="9"/></svg>
+				<div className="max-w-6xl mx-auto">
+					{filteredWorks.length > 0 ? (
+						<CardCarousel>
+							{filteredWorks.map((item) => (
+								<motion.div
+									layout
+									initial={{ opacity: 0, y: 20 }}
+									animate={{ opacity: 1, y: 0 }}
+									exit={{ opacity: 0, scale: 0.95 }}
+									transition={{ duration: 0.3 }}
+									key={item.id}
+									className="w-full sm:w-[calc(50%-12px)] lg:w-[calc(25%-18px)] shrink-0 snap-start bg-white rounded-2xl p-4 shadow-sm border border-gray-100 flex flex-col hover:shadow-md transition-shadow"
+								>
+									<div className="bg-gray-100 w-full h-40 rounded-xl mb-4 overflow-hidden">
+										{item.gambar ? (
+											<img src={item.gambar} alt={item.nama} className="w-full h-full object-cover" />
+										) : (
+											<div className="w-full h-full flex items-center justify-center text-gray-300">
+												<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><line x1="10" y1="9" x2="8" y2="9"/></svg>
+											</div>
+										)}
 									</div>
-								)}
-							</div>
-							
-							<div className="flex items-center justify-between mb-3">
-								<span className="bg-slate-100 text-slate-600 text-[10px] font-bold px-2 py-1 rounded-md uppercase tracking-wider">
-									{item.kategori === "PATEN" ? "Paten" : "Produk"}
-								</span>
-								<span className="text-[10px] text-gray-400 font-medium">
-									{item.kategori === "PATEN" ? `US-${item.createdAt.getFullYear()}-${item.id}A` : "Tersedia"}
-								</span>
-							</div>
+									
+									<div className="flex items-center justify-between mb-3">
+										<span className="bg-slate-100 text-slate-600 text-[10px] font-bold px-2 py-1 rounded-md uppercase tracking-wider">
+											{item.kategori === "PATEN" ? "Paten" : "Produk"}
+										</span>
+										<span className="text-[10px] text-gray-400 font-medium">
+											{item.kategori === "PATEN" ? `US-${item.createdAt.getFullYear()}-${item.id}A` : "Tersedia"}
+										</span>
+									</div>
 
-							<h3 className="font-bold text-sm text-[#001738] mb-2 leading-tight">{item.nama}</h3>
-							<p className="text-gray-500 text-xs mb-4 line-clamp-3 leading-relaxed">
-								{item.deskripsi}
-							</p>
-							
-							<Link 
-								href={`/portofolio/${item.id}`} 
-								className="mt-auto w-full py-2 border border-[#005a9c]/20 text-[#005a9c] text-xs font-bold rounded-lg text-center hover:bg-[#e0f2fe] transition-colors"
-							>
-								{item.kategori === "PATEN" ? "Lihat Detail" : "Halaman Produk"}
-							</Link>
-						</motion.div>
-					))}
-					{filteredWorks.length === 0 && (
-						<div className="col-span-4 text-center py-12 text-gray-400 text-sm">
+									<h3 className="font-bold text-sm text-[#001738] mb-2 leading-tight">{item.nama}</h3>
+									<p className="text-gray-500 text-xs mb-4 line-clamp-3 leading-relaxed">
+										{item.deskripsi}
+									</p>
+									
+									<Link 
+										href={`/portofolio/${item.id}`} 
+										className="mt-auto w-full py-2 border border-[#005a9c]/20 text-[#005a9c] text-xs font-bold rounded-lg text-center hover:bg-[#e0f2fe] transition-colors"
+									>
+										{item.kategori === "PATEN" ? "Lihat Detail" : "Halaman Produk"}
+									</Link>
+								</motion.div>
+							))}
+						</CardCarousel>
+					) : (
+						<div className="text-center py-12 text-gray-400 text-sm w-full">
 							Belum ada item untuk kategori ini.
 						</div>
 					)}
