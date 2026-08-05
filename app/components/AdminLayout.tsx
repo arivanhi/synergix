@@ -102,7 +102,7 @@ export default function AdminLayout({ children, user }: AdminLayoutProps) {
 							<span className="absolute top-0 right-0 w-2.5 h-2.5 bg-red-500 border-2 border-[#f4f7fb] rounded-full"></span>
 						</button>
 						<button
-							onClick={() => signOut({ callbackUrl: "/login" })}
+							onClick={() => signOut({ callbackUrl: `${window.location.origin}/login` })}
 							className="bg-blue-700 hover:bg-blue-800 text-white px-5 py-2.5 rounded-lg text-sm font-bold flex items-center gap-2 shadow-md transition-colors"
 						>
 							<LogOut size={16} /> Keluar Admin

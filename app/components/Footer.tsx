@@ -6,9 +6,9 @@ export default function Footer() {
 			<div className="absolute inset-0 bg-gradient-to-t from-[#0a192f] via-[#0a192f]/90 to-blue-900/80 backdrop-blur-md"></div>
 			<div className="relative z-10 max-w-7xl mx-auto px-6 py-20 text-white grid grid-cols-1 md:grid-cols-3 gap-16">
 				<div className="space-y-6">
-					<div className="flex items-center gap-3 mb-6">
-						<img src="/logo.png" alt="Logo" className="h-12 object-contain brightness-0 invert" />
-						<span className="font-extrabold text-3xl tracking-tight">SynergiX</span>
+					<div className="inline-flex items-center gap-3 mb-6 bg-white p-3.5 rounded-2xl shadow-lg w-max">
+						<img src="/logo.png" alt="Logo" className="h-10 object-contain" />
+						<span className="font-extrabold text-3xl tracking-tight text-blue-950">SynergiX</span>
 					</div>
 					<p className="text-gray-300 leading-relaxed">
 						Mitra terpercaya Anda dalam merekayasa masa depan melalui solusi otomasi dan robotika.

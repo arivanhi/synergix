@@ -73,7 +73,7 @@ export default function Layanan() {
 					<div className="col-span-1 md:col-span-3 bg-white/70 backdrop-blur-xl border border-white p-6 rounded-3xl shadow-xl flex flex-col md:flex-row gap-8 group hover:-translate-y-1 transition-all">
 						<div className="w-full md:w-1/2 h-64 bg-gray-200 rounded-2xl overflow-hidden border border-white/50">
 							<img
-								src="/service_mesin.jpg"
+								src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=800&q=80"
 								alt="Mesin Khusus"
 								className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
 							/>
