@@ -11,6 +11,9 @@ const nextConfig: NextConfig = {
 		// Mengabaikan error tipe TypeScript saat proses build Docker
 		ignoreBuildErrors: true,
 	},
+	serverActions: {
+		bodySizeLimit: "10mb",
+	},
 };
 
 export default nextConfig;

@@ -16,6 +16,7 @@ import {
 	UserCheck,
 	Globe,
 } from "lucide-react";
+import { Toaster } from "react-hot-toast";
 
 interface AdminLayoutProps {
 	children: React.ReactNode;
@@ -45,6 +46,7 @@ export default function AdminLayout({ children, user }: AdminLayoutProps) {
 
 	return (
 		<div className="min-h-screen bg-[#f4f7fb] flex font-sans text-gray-800">
+			<Toaster position="top-right" />
 			{/* SIDEBAR */}
 			<aside className="w-64 bg-white border-r border-gray-100 flex flex-col fixed h-full z-20">
 				<div className="h-20 flex items-center px-8 border-b border-gray-50">
