@@ -1,0 +1,1640 @@
+[
+  {
+    "key": "page_1",
+    "group": "Beranda",
+    "label": "Hero — label",
+    "kind": "text",
+    "value": "Solusi Teknologi"
+  },
+  {
+    "key": "page_2",
+    "group": "Beranda",
+    "label": "Hero — judul baris pertama",
+    "kind": "text",
+    "value": "Merekayasa "
+  },
+  {
+    "key": "page_3",
+    "group": "Beranda",
+    "label": "Hero — judul berwarna",
+    "kind": "text",
+    "value": "Masa Depan Robotika"
+  },
+  {
+    "key": "page_4",
+    "group": "Beranda",
+    "label": "Hero — deskripsi",
+    "kind": "text",
+    "value": "Menghadirkan solusi otomatisasi mutakhir untuk meningkatkan efisiensi, akurasi, dan masa depan industri yang berkelanjutan."
+  },
+  {
+    "key": "page_5",
+    "group": "Beranda",
+    "label": "Hero — teks tombol",
+    "kind": "text",
+    "value": "Eksplorasi Solusi"
+  },
+  {
+    "key": "page_6",
+    "group": "Beranda",
+    "label": "Hero — gambar",
+    "kind": "image",
+    "value": "/hero_image.png"
+  },
+  {
+    "key": "page_7",
+    "group": "Beranda",
+    "label": "Hero — deskripsi gambar",
+    "kind": "text",
+    "value": "Robot Arm"
+  },
+  {
+    "key": "page_8",
+    "group": "Beranda",
+    "label": "Layanan Kami",
+    "kind": "text",
+    "value": "Layanan Kami"
+  },
+  {
+    "key": "page_9",
+    "group": "Beranda",
+    "label": "Berbagai solusi teknologi yang kami tawarkan untuk merevolusi lini industri Anda.",
+    "kind": "text",
+    "value": "Berbagai solusi teknologi yang kami tawarkan untuk merevolusi lini industri Anda."
+  },
+  {
+    "key": "page_10",
+    "group": "Beranda",
+    "label": "Pelajari Lebih Lanjut ",
+    "kind": "text",
+    "value": "Pelajari Lebih Lanjut "
+  },
+  {
+    "key": "page_11",
+    "group": "Beranda",
+    "label": "Tim Ahli Kami",
+    "kind": "text",
+    "value": "Tim Ahli Kami"
+  },
+  {
+    "key": "page_12",
+    "group": "Beranda",
+    "label": "Lihat Profil ",
+    "kind": "text",
+    "value": "Lihat Profil "
+  },
+  {
+    "key": "page_13",
+    "group": "Beranda",
+    "label": "Belum ada data anggota tim.",
+    "kind": "text",
+    "value": "Belum ada data anggota tim."
+  },
+  {
+    "key": "page_14",
+    "group": "Beranda",
+    "label": "Portofolio & Capstone",
+    "kind": "text",
+    "value": "Portofolio & Capstone"
+  },
+  {
+    "key": "page_15",
+    "group": "Beranda",
+    "label": "No Image",
+    "kind": "text",
+    "value": "No Image"
+  },
+  {
+    "key": "page_16",
+    "group": "Beranda",
+    "label": "Lihat Detail ",
+    "kind": "text",
+    "value": "Lihat Detail "
+  },
+  {
+    "key": "page_17",
+    "group": "Beranda",
+    "label": "Belum ada data capstone design.",
+    "kind": "text",
+    "value": "Belum ada data capstone design."
+  },
+  {
+    "key": "page_18",
+    "group": "Beranda",
+    "label": "Berita Terbaru",
+    "kind": "text",
+    "value": "Berita Terbaru"
+  },
+  {
+    "key": "page_19",
+    "group": "Beranda",
+    "label": "Ikuti perkembangan riset dan inovasi terbaru dari tim kami.",
+    "kind": "text",
+    "value": "Ikuti perkembangan riset dan inovasi terbaru dari tim kami."
+  },
+  {
+    "key": "page_20",
+    "group": "Beranda",
+    "label": "Baca selengkapnya",
+    "kind": "text",
+    "value": "Baca selengkapnya"
+  },
+  {
+    "key": "page_21",
+    "group": "Beranda",
+    "label": "Belum ada berita yang dipublikasikan.",
+    "kind": "text",
+    "value": "Belum ada berita yang dipublikasikan."
+  },
+  {
+    "key": "page_22",
+    "group": "Beranda",
+    "label": "Katalog Produk & Paten",
+    "kind": "text",
+    "value": "Katalog Produk & Paten"
+  },
+  {
+    "key": "page_23",
+    "group": "Beranda",
+    "label": "Hasil produk inovasi siap pakai dan paten teknologi kami.",
+    "kind": "text",
+    "value": "Hasil produk inovasi siap pakai dan paten teknologi kami."
+  },
+  {
+    "key": "page_24",
+    "group": "Beranda",
+    "label": "Lihat Produk",
+    "kind": "text",
+    "value": "Lihat Produk"
+  },
+  {
+    "key": "page_25",
+    "group": "Beranda",
+    "label": "Belum ada produk atau paten.",
+    "kind": "text",
+    "value": "Belum ada produk atau paten."
+  },
+  {
+    "key": "page_26",
+    "group": "Beranda",
+    "label": "Dipercaya Oleh Mitra Industri",
+    "kind": "text",
+    "value": "Dipercaya Oleh Mitra Industri"
+  },
+  {
+    "key": "page_31",
+    "group": "Beranda",
+    "label": "Program Magang SMK",
+    "kind": "text",
+    "value": "Program Magang SMK"
+  },
+  {
+    "key": "page_32",
+    "group": "Beranda",
+    "label": "Kami membuka kesempatan emas bagi siswa-siswi SMK untuk terjun langsung ke industri r",
+    "kind": "text",
+    "value": "Kami membuka kesempatan emas bagi siswa-siswi SMK untuk terjun langsung ke industri robotika dan otomasi."
+  },
+  {
+    "key": "page_33",
+    "group": "Beranda",
+    "label": "Daftar Magang Sekarang",
+    "kind": "text",
+    "value": "Daftar Magang Sekarang"
+  },
+  {
+    "key": "layanan_page_1",
+    "group": "Layanan",
+    "label": "Solusi",
+    "kind": "text",
+    "value": "Solusi"
+  },
+  {
+    "key": "layanan_page_2",
+    "group": "Layanan",
+    "label": "Tingkat Lanjut",
+    "kind": "text",
+    "value": "Tingkat Lanjut"
+  },
+  {
+    "key": "layanan_page_3",
+    "group": "Layanan",
+    "label": "Meningkatkan kapabilitas industri melalui integrasi robotika mutakhir, mesin khusus, ",
+    "kind": "text",
+    "value": "Meningkatkan kapabilitas industri melalui integrasi robotika mutakhir, mesin khusus, dan edukasi teknis komprehensif."
+  },
+  {
+    "key": "layanan_page_4",
+    "group": "Layanan",
+    "label": "Edukasi",
+    "kind": "text",
+    "value": "Edukasi"
+  },
+  {
+    "key": "layanan_page_5",
+    "group": "Layanan",
+    "label": "Edukasi Robotika",
+    "kind": "text",
+    "value": "Edukasi Robotika"
+  },
+  {
+    "key": "layanan_page_6",
+    "group": "Layanan",
+    "label": "Program pelatihan komprehensif yang dirancang untuk meningkatkan keterampilan tenaga ",
+    "kind": "text",
+    "value": "Program pelatihan komprehensif yang dirancang untuk meningkatkan keterampilan tenaga kerja Anda dari tingkat dasar hingga pemrograman lanjutan."
+  },
+  {
+    "key": "layanan_page_7",
+    "group": "Layanan",
+    "label": "Eksplorasi Kurikulum ",
+    "kind": "text",
+    "value": "Eksplorasi Kurikulum "
+  },
+  {
+    "key": "layanan_page_8",
+    "group": "Layanan",
+    "label": "Integrasi Sistem",
+    "kind": "text",
+    "value": "Integrasi Sistem"
+  },
+  {
+    "key": "layanan_page_9",
+    "group": "Layanan",
+    "label": "Menghubungkan berbagai sistem terpisah secara mulus menjadi satu lini produksi otomat",
+    "kind": "text",
+    "value": "Menghubungkan berbagai sistem terpisah secara mulus menjadi satu lini produksi otomatis yang efisien."
+  },
+  {
+    "key": "layanan_page_10",
+    "group": "Layanan",
+    "label": "Pelajari Lebih Lanjut ",
+    "kind": "text",
+    "value": "Pelajari Lebih Lanjut "
+  },
+  {
+    "key": "layanan_page_11",
+    "group": "Layanan",
+    "label": "image: https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=80",
+    "kind": "image",
+    "value": "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=800&q=80"
+  },
+  {
+    "key": "layanan_page_12",
+    "group": "Layanan",
+    "label": "Mesin Khusus",
+    "kind": "text",
+    "value": "Mesin Khusus"
+  },
+  {
+    "key": "layanan_page_13",
+    "group": "Layanan",
+    "label": "Rekayasa Kustom",
+    "kind": "text",
+    "value": "Rekayasa Kustom"
+  },
+  {
+    "key": "layanan_page_14",
+    "group": "Layanan",
+    "label": "Mesin Khusus (SPM)",
+    "kind": "text",
+    "value": "Mesin Khusus (SPM)"
+  },
+  {
+    "key": "layanan_page_15",
+    "group": "Layanan",
+    "label": "Kami merancang dan memproduksi mesin khusus yang disesuaikan secara presisi dengan ke",
+    "kind": "text",
+    "value": "Kami merancang dan memproduksi mesin khusus yang disesuaikan secara presisi dengan kebutuhan produksi unik Anda."
+  },
+  {
+    "key": "layanan_page_16",
+    "group": "Layanan",
+    "label": " Rekayasa Presisi",
+    "kind": "text",
+    "value": " Rekayasa Presisi"
+  },
+  {
+    "key": "layanan_page_17",
+    "group": "Layanan",
+    "label": " Pembuatan Prototipe Cepat",
+    "kind": "text",
+    "value": " Pembuatan Prototipe Cepat"
+  },
+  {
+    "key": "layanan_page_18",
+    "group": "Layanan",
+    "label": "Keunggulan SynergiX",
+    "kind": "text",
+    "value": "Keunggulan SynergiX"
+  },
+  {
+    "key": "layanan_page_19",
+    "group": "Layanan",
+    "label": "Penerapan Cepat",
+    "kind": "text",
+    "value": "Penerapan Cepat"
+  },
+  {
+    "key": "layanan_page_20",
+    "group": "Layanan",
+    "label": "Meminimalkan waktu henti (downtime) dengan protokol integrasi efisien kami.",
+    "kind": "text",
+    "value": "Meminimalkan waktu henti (downtime) dengan protokol integrasi efisien kami."
+  },
+  {
+    "key": "layanan_page_21",
+    "group": "Layanan",
+    "label": "Teknologi AI Masa Depan",
+    "kind": "text",
+    "value": "Teknologi AI Masa Depan"
+  },
+  {
+    "key": "layanan_page_22",
+    "group": "Layanan",
+    "label": "Memanfaatkan kemampuan AI terbaru dan machine vision untuk operasi Anda.",
+    "kind": "text",
+    "value": "Memanfaatkan kemampuan AI terbaru dan machine vision untuk operasi Anda."
+  },
+  {
+    "key": "layanan_page_23",
+    "group": "Layanan",
+    "label": "Dukungan 24/7",
+    "kind": "text",
+    "value": "Dukungan 24/7"
+  },
+  {
+    "key": "layanan_page_24",
+    "group": "Layanan",
+    "label": "Bantuan teknis berdedikasi untuk memastikan kelancaran operasi secara kontinu.",
+    "kind": "text",
+    "value": "Bantuan teknis berdedikasi untuk memastikan kelancaran operasi secara kontinu."
+  },
+  {
+    "key": "layanan_page_25",
+    "group": "Layanan",
+    "label": "Jadwalkan Konsultasi",
+    "kind": "text",
+    "value": "Jadwalkan Konsultasi"
+  },
+  {
+    "key": "layanan_page_26",
+    "group": "Layanan",
+    "label": "Ceritakan tantangan otomatisasi Anda, dan insinyur kami akan merancang solusi khusus ",
+    "kind": "text",
+    "value": "Ceritakan tantangan otomatisasi Anda, dan insinyur kami akan merancang solusi khusus yang tepat guna."
+  },
+  {
+    "key": "layanan_page_27",
+    "group": "Layanan",
+    "label": "Nama Lengkap",
+    "kind": "text",
+    "value": "Nama Lengkap"
+  },
+  {
+    "key": "layanan_page_28",
+    "group": "Layanan",
+    "label": "John Doe",
+    "kind": "text",
+    "value": "John Doe"
+  },
+  {
+    "key": "layanan_page_29",
+    "group": "Layanan",
+    "label": "Perusahaan",
+    "kind": "text",
+    "value": "Perusahaan"
+  },
+  {
+    "key": "layanan_page_30",
+    "group": "Layanan",
+    "label": "PT Maju Bersama",
+    "kind": "text",
+    "value": "PT Maju Bersama"
+  },
+  {
+    "key": "layanan_page_31",
+    "group": "Layanan",
+    "label": "Layanan yang Diminati",
+    "kind": "text",
+    "value": "Layanan yang Diminati"
+  },
+  {
+    "key": "layanan_page_32",
+    "group": "Layanan",
+    "label": "Edukasi Robotika",
+    "kind": "text",
+    "value": "Edukasi Robotika"
+  },
+  {
+    "key": "layanan_page_33",
+    "group": "Layanan",
+    "label": "Integrasi Sistem",
+    "kind": "text",
+    "value": "Integrasi Sistem"
+  },
+  {
+    "key": "layanan_page_34",
+    "group": "Layanan",
+    "label": "Mesin Khusus (SPM)",
+    "kind": "text",
+    "value": "Mesin Khusus (SPM)"
+  },
+  {
+    "key": "layanan_page_35",
+    "group": "Layanan",
+    "label": "Lainnya",
+    "kind": "text",
+    "value": "Lainnya"
+  },
+  {
+    "key": "layanan_page_36",
+    "group": "Layanan",
+    "label": "Detail Proyek",
+    "kind": "text",
+    "value": "Detail Proyek"
+  },
+  {
+    "key": "layanan_page_37",
+    "group": "Layanan",
+    "label": "Jelaskan secara singkat kebutuhan atau kendala Anda...",
+    "kind": "text",
+    "value": "Jelaskan secara singkat kebutuhan atau kendala Anda..."
+  },
+  {
+    "key": "layanan_page_38",
+    "group": "Layanan",
+    "label": "Kirim Permintaan Konsultasi ",
+    "kind": "text",
+    "value": "Kirim Permintaan Konsultasi "
+  },
+  {
+    "key": "magang_MagangClient_1",
+    "group": "Magang",
+    "label": "Lamaran Terkirim!",
+    "kind": "text",
+    "value": "Lamaran Terkirim!"
+  },
+  {
+    "key": "magang_MagangClient_2",
+    "group": "Magang",
+    "label": "Terima kasih telah mendaftar di program Magang Robotika SynergiX. Kami akan meninjau ",
+    "kind": "text",
+    "value": "Terima kasih telah mendaftar di program Magang Robotika SynergiX. Kami akan meninjau lamaran Anda dan segera menghubungi Anda melalui email."
+  },
+  {
+    "key": "magang_MagangClient_3",
+    "group": "Magang",
+    "label": "Kirim Lamaran Lain",
+    "kind": "text",
+    "value": "Kirim Lamaran Lain"
+  },
+  {
+    "key": "magang_MagangClient_4",
+    "group": "Magang",
+    "label": "Program Magang SMK 2026",
+    "kind": "text",
+    "value": "Program Magang SMK 2026"
+  },
+  {
+    "key": "magang_MagangClient_5",
+    "group": "Magang",
+    "label": "Mulai Karir Robotika Anda",
+    "kind": "text",
+    "value": "Mulai Karir Robotika Anda"
+  },
+  {
+    "key": "magang_MagangClient_6",
+    "group": "Magang",
+    "label": "Bergabunglah dengan program magang industri imersif SynergiX yang dirancang khusus un",
+    "kind": "text",
+    "value": "Bergabunglah dengan program magang industri imersif SynergiX yang dirancang khusus untuk siswa Sekolah Menengah Kejuruan (SMK). Dapatkan pengalaman langsung dengan teknologi otomasi mutakhir."
+  },
+  {
+    "key": "magang_MagangClient_7",
+    "group": "Magang",
+    "label": "Mengapa Magang Bersama Kami?",
+    "kind": "text",
+    "value": "Mengapa Magang Bersama Kami?"
+  },
+  {
+    "key": "magang_MagangClient_8",
+    "group": "Magang",
+    "label": "image: https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=12",
+    "kind": "image",
+    "value": "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=1200&q=80"
+  },
+  {
+    "key": "magang_MagangClient_9",
+    "group": "Magang",
+    "label": "Industrial Equipment",
+    "kind": "text",
+    "value": "Industrial Equipment"
+  },
+  {
+    "key": "magang_MagangClient_10",
+    "group": "Magang",
+    "label": "Peralatan Industri Nyata",
+    "kind": "text",
+    "value": "Peralatan Industri Nyata"
+  },
+  {
+    "key": "magang_MagangClient_11",
+    "group": "Magang",
+    "label": "Bekerja langsung dengan lengan robot canggih, sistem PLC, dan mesin dunia nyata yang ",
+    "kind": "text",
+    "value": "Bekerja langsung dengan lengan robot canggih, sistem PLC, dan mesin dunia nyata yang digunakan oleh perusahaan manufaktur terkemuka di seluruh dunia."
+  },
+  {
+    "key": "magang_MagangClient_12",
+    "group": "Magang",
+    "label": "Bimbingan Mentor",
+    "kind": "text",
+    "value": "Bimbingan Mentor"
+  },
+  {
+    "key": "magang_MagangClient_13",
+    "group": "Magang",
+    "label": "Bimbingan 1-on-1 dari insinyur otomasi senior kami.",
+    "kind": "text",
+    "value": "Bimbingan 1-on-1 dari insinyur otomasi senior kami."
+  },
+  {
+    "key": "magang_MagangClient_14",
+    "group": "Magang",
+    "label": "Sertifikasi",
+    "kind": "text",
+    "value": "Sertifikasi"
+  },
+  {
+    "key": "magang_MagangClient_15",
+    "group": "Magang",
+    "label": "Dapatkan sertifikat yang diakui industri setelah berhasil menyelesaikannya.",
+    "kind": "text",
+    "value": "Dapatkan sertifikat yang diakui industri setelah berhasil menyelesaikannya."
+  },
+  {
+    "key": "magang_MagangClient_16",
+    "group": "Magang",
+    "label": "Integrasi Nilai Sekolah",
+    "kind": "text",
+    "value": "Integrasi Nilai Sekolah"
+  },
+  {
+    "key": "magang_MagangClient_17",
+    "group": "Magang",
+    "label": "Program kami selaras dengan standar SMK PK (Pusat Keunggulan). Kami menyediakan dokum",
+    "kind": "text",
+    "value": "Program kami selaras dengan standar SMK PK (Pusat Keunggulan). Kami menyediakan dokumentasi lengkap untuk memastikan sekolah Anda menerima laporan nilai yang diperlukan."
+  },
+  {
+    "key": "magang_MagangClient_18",
+    "group": "Magang",
+    "label": "Proses Pendaftaran",
+    "kind": "text",
+    "value": "Proses Pendaftaran"
+  },
+  {
+    "key": "magang_MagangClient_19",
+    "group": "Magang",
+    "label": "1. Registrasi Online",
+    "kind": "text",
+    "value": "1. Registrasi Online"
+  },
+  {
+    "key": "magang_MagangClient_20",
+    "group": "Magang",
+    "label": "Isi formulir secara mendetail dengan data diri dan sekolah Anda.",
+    "kind": "text",
+    "value": "Isi formulir secara mendetail dengan data diri dan sekolah Anda."
+  },
+  {
+    "key": "magang_MagangClient_21",
+    "group": "Magang",
+    "label": "2. Tinjauan Dokumen",
+    "kind": "text",
+    "value": "2. Tinjauan Dokumen"
+  },
+  {
+    "key": "magang_MagangClient_22",
+    "group": "Magang",
+    "label": "Tim kami akan meninjau Surat Rekomendasi dan transkrip yang dikirimkan.",
+    "kind": "text",
+    "value": "Tim kami akan meninjau Surat Rekomendasi dan transkrip yang dikirimkan."
+  },
+  {
+    "key": "magang_MagangClient_23",
+    "group": "Magang",
+    "label": "3. Wawancara Teknis",
+    "kind": "text",
+    "value": "3. Wawancara Teknis"
+  },
+  {
+    "key": "magang_MagangClient_24",
+    "group": "Magang",
+    "label": "Wawancara online singkat untuk menilai pengetahuan dasar dan motivasi Anda.",
+    "kind": "text",
+    "value": "Wawancara online singkat untuk menilai pengetahuan dasar dan motivasi Anda."
+  },
+  {
+    "key": "magang_MagangClient_25",
+    "group": "Magang",
+    "label": "4. Onboarding",
+    "kind": "text",
+    "value": "4. Onboarding"
+  },
+  {
+    "key": "magang_MagangClient_26",
+    "group": "Magang",
+    "label": "Selamat datang di SynergiX! Ikuti pengarahan orientasi program magang.",
+    "kind": "text",
+    "value": "Selamat datang di SynergiX! Ikuti pengarahan orientasi program magang."
+  },
+  {
+    "key": "magang_MagangClient_27",
+    "group": "Magang",
+    "label": "Daftar Sekarang",
+    "kind": "text",
+    "value": "Daftar Sekarang"
+  },
+  {
+    "key": "magang_MagangClient_28",
+    "group": "Magang",
+    "label": "Mohon lengkapi data di bawah ini. Semua kolom wajib diisi.",
+    "kind": "text",
+    "value": "Mohon lengkapi data di bawah ini. Semua kolom wajib diisi."
+  },
+  {
+    "key": "magang_MagangClient_29",
+    "group": "Magang",
+    "label": "Nama Lengkap",
+    "kind": "text",
+    "value": "Nama Lengkap"
+  },
+  {
+    "key": "magang_MagangClient_30",
+    "group": "Magang",
+    "label": "Masukkan nama lengkap",
+    "kind": "text",
+    "value": "Masukkan nama lengkap"
+  },
+  {
+    "key": "magang_MagangClient_31",
+    "group": "Magang",
+    "label": "Alamat Email",
+    "kind": "text",
+    "value": "Alamat Email"
+  },
+  {
+    "key": "magang_MagangClient_32",
+    "group": "Magang",
+    "label": "contoh: budi@siswa.com",
+    "kind": "text",
+    "value": "contoh: budi@siswa.com"
+  },
+  {
+    "key": "magang_MagangClient_33",
+    "group": "Magang",
+    "label": "Detail Sekolah",
+    "kind": "text",
+    "value": "Detail Sekolah"
+  },
+  {
+    "key": "magang_MagangClient_34",
+    "group": "Magang",
+    "label": "Nama SMK",
+    "kind": "text",
+    "value": "Nama SMK"
+  },
+  {
+    "key": "magang_MagangClient_35",
+    "group": "Magang",
+    "label": "SMK Negeri 1...",
+    "kind": "text",
+    "value": "SMK Negeri 1..."
+  },
+  {
+    "key": "magang_MagangClient_36",
+    "group": "Magang",
+    "label": "Jurusan",
+    "kind": "text",
+    "value": "Jurusan"
+  },
+  {
+    "key": "magang_MagangClient_37",
+    "group": "Magang",
+    "label": "Mekatronika",
+    "kind": "text",
+    "value": "Mekatronika"
+  },
+  {
+    "key": "magang_MagangClient_38",
+    "group": "Magang",
+    "label": "NISN",
+    "kind": "text",
+    "value": "NISN"
+  },
+  {
+    "key": "magang_MagangClient_39",
+    "group": "Magang",
+    "label": "0012345678",
+    "kind": "text",
+    "value": "0012345678"
+  },
+  {
+    "key": "magang_MagangClient_40",
+    "group": "Magang",
+    "label": "Durasi Magang",
+    "kind": "text",
+    "value": "Durasi Magang"
+  },
+  {
+    "key": "magang_MagangClient_41",
+    "group": "Magang",
+    "label": "3 Bulan",
+    "kind": "text",
+    "value": "3 Bulan"
+  },
+  {
+    "key": "magang_MagangClient_42",
+    "group": "Magang",
+    "label": "6 Bulan",
+    "kind": "text",
+    "value": "6 Bulan"
+  },
+  {
+    "key": "magang_MagangClient_43",
+    "group": "Magang",
+    "label": "1 Tahun",
+    "kind": "text",
+    "value": "1 Tahun"
+  },
+  {
+    "key": "magang_MagangClient_44",
+    "group": "Magang",
+    "label": "Unggah Surat Rekomendasi (PDF)",
+    "kind": "text",
+    "value": "Unggah Surat Rekomendasi (PDF)"
+  },
+  {
+    "key": "magang_MagangClient_45",
+    "group": "Magang",
+    "label": "Mengapa Anda ingin magang di SynergiX?",
+    "kind": "text",
+    "value": "Mengapa Anda ingin magang di SynergiX?"
+  },
+  {
+    "key": "magang_MagangClient_46",
+    "group": "Magang",
+    "label": "Ceritakan secara singkat ketertarikan Anda pada otomasi industri...",
+    "kind": "text",
+    "value": "Ceritakan secara singkat ketertarikan Anda pada otomasi industri..."
+  },
+  {
+    "key": "magang_MagangClient_47",
+    "group": "Magang",
+    "label": "Dengan mengirimkan lamaran ini, Anda mengonfirmasi persetujuan sekolah untuk mengikut",
+    "kind": "text",
+    "value": "Dengan mengirimkan lamaran ini, Anda mengonfirmasi persetujuan sekolah untuk mengikuti program magang."
+  },
+  {
+    "key": "magang_MagangClient_48",
+    "group": "Magang",
+    "label": "Unggah Dokumen",
+    "kind": "text",
+    "value": "Unggah Dokumen"
+  },
+  {
+    "key": "magang_MagangClient_49",
+    "group": "Magang",
+    "label": "Format didukung: PDF, JPG, PNG (Maks 5MB).",
+    "kind": "text",
+    "value": "Format didukung: PDF, JPG, PNG (Maks 5MB)."
+  },
+  {
+    "key": "magang_MagangClient_50",
+    "group": "Magang",
+    "label": "Tarik & Lepas file di sini",
+    "kind": "text",
+    "value": "Tarik & Lepas file di sini"
+  },
+  {
+    "key": "magang_MagangClient_51",
+    "group": "Magang",
+    "label": "atau klik untuk mencari dari perangkat",
+    "kind": "text",
+    "value": "atau klik untuk mencari dari perangkat"
+  },
+  {
+    "key": "tim_TimClient_1",
+    "group": "Tim",
+    "label": "Mengenal Tim Ahli",
+    "kind": "text",
+    "value": "Mengenal Tim Ahli"
+  },
+  {
+    "key": "tim_TimClient_2",
+    "group": "Tim",
+    "label": "SynergiX",
+    "kind": "text",
+    "value": "SynergiX"
+  },
+  {
+    "key": "tim_TimClient_3",
+    "group": "Tim",
+    "label": "Tim Pusat Robotika Digital membawa keahlian kelas dunia dalam AI, teknik mesin, dan a",
+    "kind": "text",
+    "value": "Tim Pusat Robotika Digital membawa keahlian kelas dunia dalam AI, teknik mesin, dan arsitektur perangkat lunak untuk merintis masa depan otomasi industri."
+  },
+  {
+    "key": "tim_TimClient_4",
+    "group": "Tim",
+    "label": "Pimpinan",
+    "kind": "text",
+    "value": "Pimpinan"
+  },
+  {
+    "key": "tim_TimClient_5",
+    "group": "Tim",
+    "label": "Lihat Profil ",
+    "kind": "text",
+    "value": "Lihat Profil "
+  },
+  {
+    "key": "tim_TimClient_6",
+    "group": "Tim",
+    "label": "Belum ada data pimpinan.",
+    "kind": "text",
+    "value": "Belum ada data pimpinan."
+  },
+  {
+    "key": "tim_TimClient_7",
+    "group": "Tim",
+    "label": "Anggota",
+    "kind": "text",
+    "value": "Anggota"
+  },
+  {
+    "key": "tim_TimClient_8",
+    "group": "Tim",
+    "label": "Lihat Profil ",
+    "kind": "text",
+    "value": "Lihat Profil "
+  },
+  {
+    "key": "tim_TimClient_9",
+    "group": "Tim",
+    "label": "Belum ada data anggota.",
+    "kind": "text",
+    "value": "Belum ada data anggota."
+  },
+  {
+    "key": "tim__id__TimDetailClient_1",
+    "group": "Profil Tim",
+    "label": " Back to Team",
+    "kind": "text",
+    "value": " Back to Team"
+  },
+  {
+    "key": "tim__id__TimDetailClient_2",
+    "group": "Profil Tim",
+    "label": "Biography",
+    "kind": "text",
+    "value": "Biography"
+  },
+  {
+    "key": "tim__id__TimDetailClient_3",
+    "group": "Profil Tim",
+    "label": "Experience",
+    "kind": "text",
+    "value": "Experience"
+  },
+  {
+    "key": "tim__id__TimDetailClient_4",
+    "group": "Profil Tim",
+    "label": "Patents",
+    "kind": "text",
+    "value": "Patents"
+  },
+  {
+    "key": "tim__id__TimDetailClient_5",
+    "group": "Profil Tim",
+    "label": "Publications",
+    "kind": "text",
+    "value": "Publications"
+  },
+  {
+    "key": "tim__id__TimDetailClient_6",
+    "group": "Profil Tim",
+    "label": "Location",
+    "kind": "text",
+    "value": "Location"
+  },
+  {
+    "key": "tim__id__TimDetailClient_7",
+    "group": "Profil Tim",
+    "label": "Ongoing Research",
+    "kind": "text",
+    "value": "Ongoing Research"
+  },
+  {
+    "key": "tim__id__TimDetailClient_8",
+    "group": "Profil Tim",
+    "label": "Belum ada riset aktif.",
+    "kind": "text",
+    "value": "Belum ada riset aktif."
+  },
+  {
+    "key": "tim__id__TimDetailClient_9",
+    "group": "Profil Tim",
+    "label": "Recent Publications",
+    "kind": "text",
+    "value": "Recent Publications"
+  },
+  {
+    "key": "tim__id__TimDetailClient_10",
+    "group": "Profil Tim",
+    "label": "Belum ada publikasi terbaru.",
+    "kind": "text",
+    "value": "Belum ada publikasi terbaru."
+  },
+  {
+    "key": "tim__id__TimDetailClient_11",
+    "group": "Profil Tim",
+    "label": "Contact",
+    "kind": "text",
+    "value": "Contact"
+  },
+  {
+    "key": "team_contact_empty",
+    "group": "Profil Tim",
+    "label": "Teks kontak jika email belum diisi",
+    "kind": "text",
+    "value": "Hubungi Kami"
+  },
+  {
+    "key": "tim__id__TimDetailClient_13",
+    "group": "Profil Tim",
+    "label": " LinkedIn Profile",
+    "kind": "text",
+    "value": " LinkedIn Profile"
+  },
+  {
+    "key": "tim__id__TimDetailClient_14",
+    "group": "Profil Tim",
+    "label": " Schedule Research Consultation",
+    "kind": "text",
+    "value": " Schedule Research Consultation"
+  },
+  {
+    "key": "tim__id__TimDetailClient_15",
+    "group": "Profil Tim",
+    "label": " Sebelumnya",
+    "kind": "text",
+    "value": " Sebelumnya"
+  },
+  {
+    "key": "tim__id__TimDetailClient_16",
+    "group": "Profil Tim",
+    "label": "Selanjutnya ",
+    "kind": "text",
+    "value": "Selanjutnya "
+  },
+  {
+    "key": "portofolio_PortofolioClient_1",
+    "group": "Portofolio",
+    "label": "Inovasi & Penemuan",
+    "kind": "text",
+    "value": "Inovasi & Penemuan"
+  },
+  {
+    "key": "portofolio_PortofolioClient_2",
+    "group": "Portofolio",
+    "label": "Jelajahi portofolio paten, publikasi terobosan, dan produk komersial kami yang diranc",
+    "kind": "text",
+    "value": "Jelajahi portofolio paten, publikasi terobosan, dan produk komersial kami yang dirancang untuk masa depan otomasi."
+  },
+  {
+    "key": "portofolio_PortofolioClient_3",
+    "group": "Portofolio",
+    "label": "Capstone Design",
+    "kind": "text",
+    "value": "Capstone Design"
+  },
+  {
+    "key": "portofolio_PortofolioClient_4",
+    "group": "Portofolio",
+    "label": "Robotics",
+    "kind": "text",
+    "value": "Robotics"
+  },
+  {
+    "key": "portofolio_PortofolioClient_5",
+    "group": "Portofolio",
+    "label": "Lihat Detail ",
+    "kind": "text",
+    "value": "Lihat Detail "
+  },
+  {
+    "key": "portofolio_PortofolioClient_6",
+    "group": "Portofolio",
+    "label": "Semua Karya",
+    "kind": "text",
+    "value": "Semua Karya"
+  },
+  {
+    "key": "portofolio_PortofolioClient_7",
+    "group": "Portofolio",
+    "label": "Belum ada item untuk kategori ini.",
+    "kind": "text",
+    "value": "Belum ada item untuk kategori ini."
+  },
+  {
+    "key": "portofolio__id__page_1",
+    "group": "Detail Portofolio",
+    "label": " Kembali ke Portofolio & Produk",
+    "kind": "text",
+    "value": " Kembali ke Portofolio & Produk"
+  },
+  {
+    "key": "portofolio__id__page_2",
+    "group": "Detail Portofolio",
+    "label": "Gambar tidak tersedia",
+    "kind": "text",
+    "value": "Gambar tidak tersedia"
+  },
+  {
+    "key": "portofolio__id__page_3",
+    "group": "Detail Portofolio",
+    "label": " Sebelumnya",
+    "kind": "text",
+    "value": " Sebelumnya"
+  },
+  {
+    "key": "portofolio__id__page_4",
+    "group": "Detail Portofolio",
+    "label": "Selanjutnya ",
+    "kind": "text",
+    "value": "Selanjutnya "
+  },
+  {
+    "key": "berita_page_1",
+    "group": "Berita",
+    "label": "Berita & Artikel",
+    "kind": "text",
+    "value": "Berita & Artikel"
+  },
+  {
+    "key": "berita_page_2",
+    "group": "Berita",
+    "label": "Informasi terbaru, publikasi, dan pencapaian dari SynergiX Robotics.",
+    "kind": "text",
+    "value": "Informasi terbaru, publikasi, dan pencapaian dari SynergiX Robotics."
+  },
+  {
+    "key": "berita_page_3",
+    "group": "Berita",
+    "label": "No Image",
+    "kind": "text",
+    "value": "No Image"
+  },
+  {
+    "key": "berita_page_4",
+    "group": "Berita",
+    "label": "Baca Selengkapnya ",
+    "kind": "text",
+    "value": "Baca Selengkapnya "
+  },
+  {
+    "key": "berita_page_5",
+    "group": "Berita",
+    "label": "Belum ada berita saat ini.",
+    "kind": "text",
+    "value": "Belum ada berita saat ini."
+  },
+  {
+    "key": "berita__id__page_1",
+    "group": "Detail Berita",
+    "label": " Kembali ke Berita",
+    "kind": "text",
+    "value": " Kembali ke Berita"
+  },
+  {
+    "key": "berita__id__page_2",
+    "group": "Detail Berita",
+    "label": " Sebelumnya",
+    "kind": "text",
+    "value": " Sebelumnya"
+  },
+  {
+    "key": "berita__id__page_3",
+    "group": "Detail Berita",
+    "label": "Selanjutnya ",
+    "kind": "text",
+    "value": "Selanjutnya "
+  },
+  {
+    "key": "components_ClientNavigation_1",
+    "group": "Navigasi",
+    "label": "Beranda",
+    "kind": "text",
+    "value": "Beranda"
+  },
+  {
+    "key": "components_ClientNavigation_2",
+    "group": "Navigasi",
+    "label": "Layanan",
+    "kind": "text",
+    "value": "Layanan"
+  },
+  {
+    "key": "components_ClientNavigation_3",
+    "group": "Navigasi",
+    "label": "Tim",
+    "kind": "text",
+    "value": "Tim"
+  },
+  {
+    "key": "components_ClientNavigation_4",
+    "group": "Navigasi",
+    "label": "Portofolio & Produk",
+    "kind": "text",
+    "value": "Portofolio & Produk"
+  },
+  {
+    "key": "components_ClientNavigation_5",
+    "group": "Navigasi",
+    "label": "Berita",
+    "kind": "text",
+    "value": "Berita"
+  },
+  {
+    "key": "components_ClientNavigation_6",
+    "group": "Navigasi",
+    "label": "Magang",
+    "kind": "text",
+    "value": "Magang"
+  },
+  {
+    "key": "components_ClientNavigation_7",
+    "group": "Navigasi",
+    "label": "image: /logo.png",
+    "kind": "image",
+    "value": "/logo.png"
+  },
+  {
+    "key": "components_ClientNavigation_8",
+    "group": "Navigasi",
+    "label": "Logo",
+    "kind": "text",
+    "value": "Logo"
+  },
+  {
+    "key": "components_ClientNavigation_9",
+    "group": "Navigasi",
+    "label": "SynergiX",
+    "kind": "text",
+    "value": "SynergiX"
+  },
+  {
+    "key": "components_ClientNavigation_10",
+    "group": "Navigasi",
+    "label": "Hubungi Kami",
+    "kind": "text",
+    "value": "Hubungi Kami"
+  },
+  {
+    "key": "components_Footer_1",
+    "group": "Footer",
+    "label": "image: /logo.png",
+    "kind": "image",
+    "value": "/logo.png"
+  },
+  {
+    "key": "components_Footer_2",
+    "group": "Footer",
+    "label": "Logo",
+    "kind": "text",
+    "value": "Logo"
+  },
+  {
+    "key": "components_Footer_3",
+    "group": "Footer",
+    "label": "SynergiX",
+    "kind": "text",
+    "value": "SynergiX"
+  },
+  {
+    "key": "components_Footer_4",
+    "group": "Footer",
+    "label": "Mitra terpercaya Anda dalam merekayasa masa depan melalui solusi otomasi dan robotika",
+    "kind": "text",
+    "value": "Mitra terpercaya Anda dalam merekayasa masa depan melalui solusi otomasi dan robotika."
+  },
+  {
+    "key": "components_Footer_5",
+    "group": "Footer",
+    "label": "Kontak Cepat",
+    "kind": "text",
+    "value": "Kontak Cepat"
+  },
+  {
+    "key": "components_Footer_6",
+    "group": "Footer",
+    "label": "Jl. Teknologi No. 123, Kawasan Inovasi",
+    "kind": "text",
+    "value": "Jl. Teknologi No. 123, Kawasan Inovasi"
+  },
+  {
+    "key": "components_Footer_7",
+    "group": "Footer",
+    "label": "Kota Semarang, Jawa Tengah 50123",
+    "kind": "text",
+    "value": "Kota Semarang, Jawa Tengah 50123"
+  },
+  {
+    "key": "components_Footer_8",
+    "group": "Footer",
+    "label": "+62 812 3456 7890",
+    "kind": "text",
+    "value": "+62 812 3456 7890"
+  },
+  {
+    "key": "components_Footer_9",
+    "group": "Footer",
+    "label": "info@synergix-robotics.com",
+    "kind": "text",
+    "value": "info@synergix-robotics.com"
+  },
+  {
+    "key": "components_Footer_10",
+    "group": "Footer",
+    "label": "Lokasi Kami",
+    "kind": "text",
+    "value": "Lokasi Kami"
+  },
+  {
+    "key": "components_Footer_11",
+    "group": "Footer",
+    "label": "image: https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d126715.7960",
+    "kind": "url",
+    "value": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d126715.79607412854!2d110.3398251347012!3d-6.993259877793392!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e708b4d3f0d024d%3A0x1e0432b9da5cb9f2!2sSemarang%2C%20Semarang%20City%2C%20Central%20Java!5e0!3m2!1sen!2sid!4v1700000000000!5m2!1sen!2sid"
+  },
+  {
+    "key": "components_Footer_12",
+    "group": "Footer",
+    "label": " SynergiX Robotics. Hak Cipta Dilindungi.",
+    "kind": "text",
+    "value": " SynergiX Robotics. Hak Cipta Dilindungi."
+  },
+  {
+    "key": "components_TestimonialSlider_1",
+    "group": "Testimoni",
+    "label": "Belum ada testimoni.",
+    "kind": "text",
+    "value": "Belum ada testimoni."
+  },
+  {
+    "key": "components_TestimonialSlider_2",
+    "group": "Testimoni",
+    "label": "Avatar",
+    "kind": "text",
+    "value": "Avatar"
+  },
+  {
+    "key": "site_title",
+    "group": "Identitas & SEO",
+    "label": "Judul website",
+    "kind": "text",
+    "value": "SynergiX | Robotic, Automation, Integration"
+  },
+  {
+    "key": "site_description",
+    "group": "Identitas & SEO",
+    "label": "Deskripsi mesin pencari",
+    "kind": "text",
+    "value": "Generated by create next app"
+  },
+  {
+    "key": "hero_link",
+    "group": "Beranda",
+    "label": "Tujuan tombol hero",
+    "kind": "url",
+    "value": "/layanan"
+  },
+  {
+    "key": "footer_background",
+    "group": "Footer",
+    "label": "Gambar latar footer",
+    "kind": "image",
+    "value": "/footer_image.jpg"
+  },
+  {
+    "key": "consult_success",
+    "group": "Layanan",
+    "label": "Pesan konsultasi terkirim",
+    "value": "Permintaan konsultasi berhasil dikirim.",
+    "kind": "text"
+  },
+  {
+    "key": "consult_error",
+    "group": "Layanan",
+    "label": "Pesan konsultasi gagal",
+    "value": "Gagal mengirim permintaan. Silakan coba lagi.",
+    "kind": "text"
+  },
+  {
+    "key": "team_copyright",
+    "group": "Profil Tim",
+    "label": "Judul bagian hak cipta",
+    "value": "Hak Cipta & Paten",
+    "kind": "text"
+  },
+  {
+    "key": "team_services",
+    "group": "Profil Tim",
+    "label": "Judul bagian pengabdian",
+    "value": "Pengabdian",
+    "kind": "text"
+  },
+  {
+    "key": "magang_file_choose",
+    "group": "Magang",
+    "label": "Label pilih surat",
+    "value": "Pilih file...",
+    "kind": "text"
+  },
+  {
+    "key": "magang_sending",
+    "group": "Magang",
+    "label": "Label mengirim lamaran",
+    "value": "Mengirim...",
+    "kind": "text"
+  },
+  {
+    "key": "magang_submit",
+    "group": "Magang",
+    "label": "Tombol kirim lamaran",
+    "value": "Kirim Lamaran",
+    "kind": "text"
+  },
+  {
+    "key": "portfolio_tab_Semua",
+    "group": "Portofolio",
+    "label": "Label filter Semua",
+    "value": "Semua",
+    "kind": "text"
+  },
+  {
+    "key": "portfolio_tab_Paten",
+    "group": "Portofolio",
+    "label": "Label filter Paten",
+    "value": "Paten",
+    "kind": "text"
+  },
+  {
+    "key": "portfolio_tab_Publikasi",
+    "group": "Portofolio",
+    "label": "Label filter Publikasi",
+    "value": "Publikasi",
+    "kind": "text"
+  },
+  {
+    "key": "portfolio_tab_Produk",
+    "group": "Portofolio",
+    "label": "Label filter Produk",
+    "value": "Produk",
+    "kind": "text"
+  },
+  {
+    "key": "portfolio_available",
+    "group": "Portofolio",
+    "label": "Status produk",
+    "value": "Tersedia",
+    "kind": "text"
+  },
+  {
+    "key": "portfolio_patent_status",
+    "group": "Portofolio",
+    "label": "Keterangan paten",
+    "value": "Terdaftar",
+    "kind": "text"
+  },
+  {
+    "key": "portfolio_detail",
+    "group": "Portofolio",
+    "label": "Tombol detail paten",
+    "value": "Lihat Detail",
+    "kind": "text"
+  },
+  {
+    "key": "portfolio_product",
+    "group": "Portofolio",
+    "label": "Tombol halaman produk",
+    "value": "Halaman Produk",
+    "kind": "text"
+  },
+  {
+    "key": "magang_openings_title",
+    "group": "Magang",
+    "label": "Judul informasi lowongan magang",
+    "value": "Lowongan Magang",
+    "kind": "text"
+  },
+  {
+    "key": "magang_openings_description",
+    "group": "Magang",
+    "label": "Pengantar informasi lowongan magang",
+    "value": "Temukan bidang magang yang sesuai dengan minat dan keahlian Anda.",
+    "kind": "text"
+  },
+  {
+    "key": "magang_openings_empty",
+    "group": "Magang",
+    "label": "Informasi saat belum ada lowongan tampil",
+    "value": "Informasi bidang magang akan diumumkan di sini. Silakan hubungi kami untuk mengetahui ketersediaan program magang.",
+    "kind": "text"
+  },
+  {
+    "key": "magang_openings_badge",
+    "group": "Magang",
+    "label": "Label status lowongan tampil",
+    "value": "Pendaftaran Dibuka",
+    "kind": "text"
+  },
+  {
+    "key": "magang_openings_requirements",
+    "group": "Magang",
+    "label": "Label persyaratan lowongan magang",
+    "value": "Persyaratan",
+    "kind": "text"
+  },
+  {
+    "key": "magang_openings_period",
+    "group": "Magang",
+    "label": "Label periode lowongan magang",
+    "value": "Periode Magang",
+    "kind": "text"
+  },
+  {
+    "key": "magang_openings_apply",
+    "group": "Magang",
+    "label": "Tombol dari lowongan ke formulir",
+    "value": "Daftar Magang",
+    "kind": "text"
+  },
+  {
+    "key": "portfolio_copyright",
+    "group": "Portofolio",
+    "label": "Label hak cipta",
+    "value": "Hak Cipta",
+    "kind": "text"
+  },
+  {
+    "key": "portfolio_industrial_design",
+    "group": "Portofolio",
+    "label": "Label desain industri",
+    "value": "Desain Industri",
+    "kind": "text"
+  },
+  {
+    "key": "portfolio_media_status",
+    "group": "Portofolio",
+    "label": "Label status publikasi media",
+    "value": "Liputan Media",
+    "kind": "text"
+  },
+  {
+    "key": "portfolio_source",
+    "group": "Portofolio",
+    "label": "Tombol sumber portofolio",
+    "value": "Baca Sumber Resmi",
+    "kind": "text"
+  },
+  {
+    "key": "testimonial_form_badge",
+    "group": "Testimoni",
+    "label": "Label halaman testimoni mitra",
+    "value": "Testimoni Mitra",
+    "kind": "text"
+  },
+  {
+    "key": "testimonial_form_title",
+    "group": "Testimoni",
+    "label": "Judul formulir testimoni",
+    "value": "Bagikan Pengalaman Anda",
+    "kind": "text"
+  },
+  {
+    "key": "testimonial_form_intro",
+    "group": "Testimoni",
+    "label": "Pengantar formulir testimoni",
+    "value": "Terima kasih telah menjadi mitra SynergiX. Ceritakan pengalaman kerja sama Anda agar kami dapat terus menghadirkan solusi robotika dan otomasi yang lebih baik.",
+    "kind": "text"
+  },
+  {
+    "key": "testimonial_form_name",
+    "group": "Testimoni",
+    "label": "Label nama pemberi testimoni",
+    "value": "Nama Lengkap",
+    "kind": "text"
+  },
+  {
+    "key": "testimonial_form_role",
+    "group": "Testimoni",
+    "label": "Label jabatan pemberi testimoni",
+    "value": "Jabatan",
+    "kind": "text"
+  },
+  {
+    "key": "testimonial_form_organization",
+    "group": "Testimoni",
+    "label": "Label instansi pemberi testimoni",
+    "value": "Perusahaan / Instansi",
+    "kind": "text"
+  },
+  {
+    "key": "testimonial_form_message",
+    "group": "Testimoni",
+    "label": "Label isian testimoni",
+    "value": "Pengalaman Kerja Sama Anda",
+    "kind": "text"
+  },
+  {
+    "key": "testimonial_form_message_help",
+    "group": "Testimoni",
+    "label": "Petunjuk panjang testimoni",
+    "value": "Ceritakan layanan yang digunakan dan manfaat yang Anda rasakan (20–2.000 karakter).",
+    "kind": "text"
+  },
+  {
+    "key": "testimonial_form_photo",
+    "group": "Testimoni",
+    "label": "Label unggah foto testimoni",
+    "value": "Foto Profil (Opsional)",
+    "kind": "text"
+  },
+  {
+    "key": "testimonial_form_photo_help",
+    "group": "Testimoni",
+    "label": "Petunjuk foto testimoni",
+    "value": "Gunakan foto PNG, JPG, WEBP, atau GIF, maksimal 2 MB.",
+    "kind": "text"
+  },
+  {
+    "key": "testimonial_form_consent",
+    "group": "Testimoni",
+    "label": "Persetujuan publikasi testimoni",
+    "value": "Saya setuju nama, jabatan, instansi, testimoni, dan foto yang saya kirim ditampilkan di website SynergiX setelah ditinjau admin.",
+    "kind": "text"
+  },
+  {
+    "key": "testimonial_form_submit",
+    "group": "Testimoni",
+    "label": "Tombol kirim testimoni",
+    "value": "Kirim Testimoni",
+    "kind": "text"
+  },
+  {
+    "key": "testimonial_form_sending",
+    "group": "Testimoni",
+    "label": "Tombol saat mengirim testimoni",
+    "value": "Mengirim...",
+    "kind": "text"
+  },
+  {
+    "key": "testimonial_form_review_note",
+    "group": "Testimoni",
+    "label": "Catatan moderasi testimoni",
+    "value": "Testimoni akan ditinjau oleh admin sebelum ditampilkan di halaman awal.",
+    "kind": "text"
+  },
+  {
+    "key": "testimonial_form_success_title",
+    "group": "Testimoni",
+    "label": "Judul konfirmasi kirim testimoni",
+    "value": "Terima Kasih atas Testimoni Anda",
+    "kind": "text"
+  },
+  {
+    "key": "testimonial_form_success",
+    "group": "Testimoni",
+    "label": "Pesan sukses kirim testimoni",
+    "value": "Testimoni Anda berhasil diterima dan sedang menunggu peninjauan admin. Setelah disetujui, testimoni akan ditampilkan di halaman awal SynergiX.",
+    "kind": "text"
+  },
+  {
+    "key": "testimonial_form_home",
+    "group": "Testimoni",
+    "label": "Tombol kembali dari formulir testimoni",
+    "value": "Kembali ke Beranda",
+    "kind": "text"
+  },
+  {
+    "key": "team_bio_empty",
+    "group": "Tim",
+    "label": "Biografi kosong",
+    "value": "Tidak ada biografi singkat.",
+    "kind": "text"
+  }
+]

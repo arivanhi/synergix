@@ -16,6 +16,9 @@ enum KategoriProduk {
   PRODUK_BUATAN
   CAPSTONE_DESIGN
   PATEN
+  PUBLIKASI
+  HAK_CIPTA
+  DESAIN_INDUSTRI
 }
 
 // Peran untuk Keanggotaan
@@ -23,12 +26,23 @@ enum PeranAnggota {
   PIMPINAN
   KETUA
   ANGGOTA_PERISET
+  WAKIL
+  PENELITI_UTAMA
+  DOSEN_PEMBIMBING
+  ANGGOTA
+  PENELITI_ALUMNI
 }
 
 // Status Magang
 enum StatusMagang {
   MENUNGGU
   DITERIMA
+  DITOLAK
+}
+
+enum StatusTestimoni {
+  MENUNGGU
+  DISETUJUI
   DITOLAK
 }
 
@@ -48,8 +62,9 @@ model Produk {
   id          Int            @id @default(autoincrement())
   nama        String
   deskripsi   String?        @db.Text
-  kategori    KategoriProduk // Menggunakan Enum agar pilihannya pasti (Produk Buatan/Capstone/Paten)
+  kategori    KategoriProduk
   gambar      String?        // Path foto produk di folder public
+  sourceUrl   String?        @db.VarChar(512)
   
   createdAt   DateTime       @default(now())
   updatedAt   DateTime       @updatedAt
@@ -69,6 +84,13 @@ model Keanggotaan {
   jumlahPublikasi String?
   publikasi   Json?
   riset       Json?
+  sintaUrl    String?
+  sintaStatistik Json?
+  hakCipta    Json?
+  pengabdian  Json?
+  email       String?
+  linkedin    String?
+  konsultasiUrl String?
   paten       String?      @db.Text
   
   foto        String?      // Path foto anggota di folder public
@@ -94,6 +116,8 @@ model Testimoni {
   jabatan   String
   teks      String   @db.Text
   foto      String?
+  instansi  String?
+  status    StatusTestimoni @default(MENUNGGU)
   
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -123,4 +147,22 @@ model Layanan {
   
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+}
+
+model KontenWebsite {
+  id        Int      @id @default(1)
+  data      Json
+  updatedAt DateTime @updatedAt
+}
+
+model Konsultasi {
+  id         Int      @id @default(autoincrement())
+  nama       String
+  perusahaan String
+  email      String?
+  layanan    String
+  detail     String   @db.Text
+  diproses   Boolean  @default(false)
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
 }

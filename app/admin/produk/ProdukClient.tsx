@@ -5,8 +5,7 @@ import { Plus, Edit, Trash2, X, Save, Image as ImageIcon, Loader2 } from "lucide
 import { createProduk, updateProduk, deleteProduk } from "../../actions/produk";
 import { uploadImage } from "../../actions/upload";
 import toast from "react-hot-toast";
-
-type KategoriProduk = "PRODUK_BUATAN" | "CAPSTONE_DESIGN" | "PATEN";
+import type { KategoriProduk } from "@prisma/client";
 
 type Produk = {
 	id: number;
@@ -14,6 +13,7 @@ type Produk = {
 	deskripsi: string | null;
 	kategori: KategoriProduk;
 	gambar: string | null;
+	sourceUrl: string | null;
 	createdAt: Date;
 	updatedAt: Date;
 };
@@ -27,6 +27,7 @@ export default function ProdukClient({ initialData }: { initialData: Produk[] })
 	const [nama, setNama] = useState("");
 	const [kategori, setKategori] = useState<KategoriProduk>("PRODUK_BUATAN");
 	const [deskripsi, setDeskripsi] = useState("");
+	const [sourceUrl, setSourceUrl] = useState("");
 	const [file, setFile] = useState<File | null>(null);
 	const [previewUrl, setPreviewUrl] = useState<string | null>(null);
 
@@ -36,11 +37,13 @@ export default function ProdukClient({ initialData }: { initialData: Produk[] })
 			setNama(data.nama);
 			setKategori(data.kategori);
 			setDeskripsi(data.deskripsi || "");
+			setSourceUrl(data.sourceUrl || "");
 			setPreviewUrl(data.gambar || null);
 		} else {
 			setNama("");
 			setKategori("PRODUK_BUATAN");
 			setDeskripsi("");
+			setSourceUrl("");
 			setPreviewUrl(null);
 		}
 		setFile(null);
@@ -75,6 +78,7 @@ export default function ProdukClient({ initialData }: { initialData: Produk[] })
 			const payload = {
 				nama,
 				deskripsi,
+				sourceUrl,
 				kategori,
 				gambar: imageUrl || undefined,
 			};
@@ -115,7 +119,7 @@ export default function ProdukClient({ initialData }: { initialData: Produk[] })
 			<div className="flex justify-between items-center mb-6">
 				<div>
 					<h1 className="text-2xl font-bold text-gray-900">Manajemen Produk</h1>
-					<p className="text-gray-500 text-sm">Kelola produk, paten, dan capstone design.</p>
+					<p className="text-gray-500 text-sm">Kelola produk, publikasi media, HKI, dan capstone design.</p>
 				</div>
 				<button
 					onClick={() => openModal()}
@@ -151,7 +155,7 @@ export default function ProdukClient({ initialData }: { initialData: Produk[] })
 								</td>
 								<td className="p-4 hidden md:table-cell text-sm">
 									<span className="bg-gray-100 text-gray-700 px-2 py-1 rounded text-xs font-semibold">
-										{item.kategori.replace('_', ' ')}
+										{item.kategori.replaceAll('_', ' ')}
 									</span>
 								</td>
 								<td className="p-4 text-right">
@@ -219,6 +223,9 @@ export default function ProdukClient({ initialData }: { initialData: Produk[] })
 											<option value="PRODUK_BUATAN">Produk Buatan</option>
 											<option value="CAPSTONE_DESIGN">Capstone Design</option>
 											<option value="PATEN">Paten</option>
+											<option value="PUBLIKASI">Publikasi Media</option>
+											<option value="HAK_CIPTA">Hak Cipta</option>
+											<option value="DESAIN_INDUSTRI">Desain Industri</option>
 										</select>
 									</div>
 								</div>
@@ -235,6 +242,10 @@ export default function ProdukClient({ initialData }: { initialData: Produk[] })
 									/>
 								</div>
 
+								<div>
+									<label htmlFor="produk-source" className="block text-sm font-bold text-gray-700 mb-2">URL Sumber</label>
+									<input id="produk-source" type="url" maxLength={512} value={sourceUrl} onChange={(e) => setSourceUrl(e.target.value)} placeholder="https://..." className="w-full bg-gray-50 border border-gray-200 text-gray-900 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-teal-500" />
+								</div>
 								<div>
 									<label className="block text-sm font-bold text-gray-700 mb-2">Foto Produk</label>
 									

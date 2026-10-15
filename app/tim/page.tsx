@@ -8,8 +8,8 @@ export default async function TimPage() {
 		orderBy: { createdAt: "asc" }
 	});
 
-	const pimpinanData = allTim.filter(t => ["KETUA", "WAKIL", "PENELITI_UTAMA"].includes(t.peran));
-	const anggotaData = allTim.filter(t => !["KETUA", "WAKIL", "PENELITI_UTAMA"].includes(t.peran));
+	const pimpinanData = allTim.filter(t => ["PIMPINAN", "KETUA", "WAKIL", "PENELITI_UTAMA"].includes(t.peran));
+	const anggotaData = allTim.filter(t => !["PIMPINAN", "KETUA", "WAKIL", "PENELITI_UTAMA"].includes(t.peran));
 
 	return <TimClient pimpinanData={pimpinanData} anggotaData={anggotaData} />;
 }

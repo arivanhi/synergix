@@ -1,3 +1,4 @@
+import { getSiteContent } from "../lib/content";
 import Link from "next/link";
 import { BookOpen, Users, Cpu, FileText, ChevronRight, MapPin, Phone, Mail, ArrowRight } from "lucide-react";
 import ClientNavigation from "./components/ClientNavigation";
@@ -8,6 +9,7 @@ import { prisma } from "../lib/prisma";
 export const dynamic = 'force-dynamic';
 
 export default async function Home() {
+	const content = await getSiteContent();
 	// Fetch data from database
 	const beritaData = await prisma.berita.findMany({
 		orderBy: { createdAt: "desc" },
@@ -34,6 +36,7 @@ export default async function Home() {
 	});
 
 	const testimoniData = await prisma.testimoni.findMany({
+		where: { status: "DISETUJUI" },
 		orderBy: { createdAt: "desc" },
 	});
 
@@ -48,29 +51,21 @@ export default async function Home() {
 				className="pt-32 pb-20 px-6 max-w-7xl mx-auto flex flex-col-reverse md:flex-row items-center gap-12"
 			>
 				<div className="flex-1 space-y-6">
-					<p className="text-teal-600 font-bold tracking-widest text-sm uppercase">Solusi Teknologi</p>
-					<h1 className="text-5xl md:text-6xl font-extrabold leading-tight text-gray-900">
-						Merekayasa <br />
-						<span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-900 to-teal-400">
-							Masa Depan Robotika
-						</span>
+					<p className="text-teal-600 font-bold tracking-widest text-sm uppercase">{content.values["page_1"]}</p>
+					<h1 className="text-5xl md:text-6xl font-extrabold leading-tight text-gray-900">{content.values["page_2"]}<br />
+						<span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-900 to-teal-400">{content.values["page_3"]}</span>
 					</h1>
-					<p className="text-gray-600 text-lg max-w-lg leading-relaxed">
-						Menghadirkan solusi otomatisasi mutakhir untuk meningkatkan efisiensi, akurasi, dan masa depan industri yang
-						berkelanjutan.
-					</p>
+					<p className="text-gray-600 text-lg max-w-lg leading-relaxed">{content.values["page_4"]}</p>
 					<div className="flex gap-4 pt-4">
 						<Link
-							href="/layanan"
+							href={content.values.hero_link}
 							className="bg-gradient-to-r from-blue-900 to-teal-500 text-white px-7 py-3.5 rounded-full font-bold shadow-lg hover:-translate-y-1 transition-all inline-block"
-						>
-							Eksplorasi Solusi
-						</Link>
+						>{content.values["page_5"]}</Link>
 					</div>
 				</div>
 				<div className="flex-1">
 					<div className="bg-white/40 backdrop-blur-lg p-4 rounded-3xl border border-white shadow-2xl">
-						<img src="/hero_image.png" alt="Robot Arm" className="w-full h-auto rounded-2xl object-cover" />
+						<img src={content.values["page_6"]} alt={content.values["page_7"]} className="w-full h-auto rounded-2xl object-cover" />
 					</div>
 				</div>
 			</section>
@@ -81,12 +76,8 @@ export default async function Home() {
 				className="py-20 px-6"
 			>
 				<div className="max-w-7xl mx-auto text-center">
-					<h2 className="text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-900 to-teal-400 mb-4 inline-block">
-						Layanan Kami
-					</h2>
-					<p className="text-gray-500 mb-12 max-w-2xl mx-auto">
-						Berbagai solusi teknologi yang kami tawarkan untuk merevolusi lini industri Anda.
-					</p>
+					<h2 className="text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-900 to-teal-400 mb-4 inline-block">{content.values["page_8"]}</h2>
+					<p className="text-gray-500 mb-12 max-w-2xl mx-auto">{content.values["page_9"]}</p>
 
 					<div className="grid grid-cols-1 md:grid-cols-3 gap-8">
 						{layananData.map((item) => (
@@ -110,8 +101,7 @@ export default async function Home() {
 								<Link
 									href="/layanan"
 									className="text-teal-600 font-bold hover:underline flex items-center gap-1 text-sm"
-								>
-									Pelajari Lebih Lanjut <ArrowRight size={16} />
+								>{content.values["page_10"]}<ArrowRight size={16} />
 								</Link>
 							</div>
 						))}
@@ -124,9 +114,7 @@ export default async function Home() {
 				id="tim"
 				className="py-20 px-6 max-w-7xl mx-auto text-center"
 			>
-				<h2 className="text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-900 to-teal-400 mb-12">
-					Tim Ahli Kami
-				</h2>
+				<h2 className="text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-900 to-teal-400 mb-12">{content.values["page_11"]}</h2>
 				{timData.length > 0 ? (
 					<div className="flex flex-wrap justify-center gap-6">
 						{timData.map((anggota) => (
@@ -151,14 +139,13 @@ export default async function Home() {
 								<Link
 									href={`/tim/${anggota.id}`}
 									className="text-teal-600 font-bold text-sm hover:underline flex items-center gap-1 mt-auto"
-								>
-									Lihat Profil <ArrowRight size={16} />
+								>{content.values["page_12"]}<ArrowRight size={16} />
 								</Link>
 							</div>
 						))}
 					</div>
 				) : (
-					<p className="text-gray-500">Belum ada data anggota tim.</p>
+					<p className="text-gray-500">{content.values["page_13"]}</p>
 				)}
 			</section>
 
@@ -167,9 +154,7 @@ export default async function Home() {
 				id="portofolio"
 				className="py-20 px-6 bg-gradient-to-b from-transparent to-blue-50/50 text-center"
 			>
-				<h2 className="text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-900 to-teal-400 mb-12">
-					Portofolio & Capstone
-				</h2>
+				<h2 className="text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-900 to-teal-400 mb-12">{content.values["page_14"]}</h2>
 				{capstoneData.length > 0 ? (
 					<div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
 						{capstoneData.map((capstone) => (
@@ -181,18 +166,17 @@ export default async function Home() {
 									{capstone.gambar ? (
 										<img src={capstone.gambar} alt={capstone.nama} className="w-full h-full object-cover" />
 									) : (
-										<div className="w-full h-full flex items-center justify-center text-gray-500">No Image</div>
+										<div className="w-full h-full flex items-center justify-center text-gray-500">{content.values["page_15"]}</div>
 									)}
 								</div>
 								<h3 className="font-bold text-lg text-blue-950">{capstone.nama}</h3>
-								<Link href={`/portofolio/${capstone.id}`} className="text-teal-600 text-sm font-bold flex items-center gap-1 mt-3 hover:underline">
-									Lihat Detail <ArrowRight size={16} />
+								<Link href={`/portofolio/${capstone.id}`} className="text-teal-600 text-sm font-bold flex items-center gap-1 mt-3 hover:underline">{content.values["page_16"]}<ArrowRight size={16} />
 								</Link>
 							</div>
 						))}
 					</div>
 				) : (
-					<p className="text-gray-500">Belum ada data capstone design.</p>
+					<p className="text-gray-500">{content.values["page_17"]}</p>
 				)}
 			</section>
 
@@ -201,10 +185,8 @@ export default async function Home() {
 				id="berita"
 				className="py-20 px-6 max-w-7xl mx-auto text-center border-t border-teal-100/50"
 			>
-				<h2 className="text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-900 to-teal-400 mb-4">
-					Berita Terbaru
-				</h2>
-				<p className="text-gray-500 mb-8">Ikuti perkembangan riset dan inovasi terbaru dari tim kami.</p>
+				<h2 className="text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-900 to-teal-400 mb-4">{content.values["page_18"]}</h2>
+				<p className="text-gray-500 mb-8">{content.values["page_19"]}</p>
 				{beritaData.length > 0 ? (
 					<div className="grid grid-cols-1 md:grid-cols-3 gap-6">
 						{beritaData.map((berita) => (
@@ -214,15 +196,13 @@ export default async function Home() {
 								)}
 								<h3 className="font-bold text-lg mb-2 text-gray-900">{berita.judul}</h3>
 								<p className="text-gray-600 text-sm mb-4 line-clamp-3">{berita.konten}</p>
-								<Link href={`/berita/${berita.id}`} className="text-blue-600 text-sm font-semibold hover:underline">
-									Baca selengkapnya
-								</Link>
+								<Link href={`/berita/${berita.id}`} className="text-blue-600 text-sm font-semibold hover:underline">{content.values["page_20"]}</Link>
 							</div>
 						))}
 					</div>
 				) : (
 					<div className="h-32 bg-white/50 backdrop-blur-sm rounded-2xl flex items-center justify-center border border-white shadow-sm">
-						<p className="text-gray-400 font-medium">Belum ada berita yang dipublikasikan.</p>
+						<p className="text-gray-400 font-medium">{content.values["page_21"]}</p>
 					</div>
 				)}
 			</section>
@@ -232,10 +212,8 @@ export default async function Home() {
 				id="produk"
 				className="py-20 px-6 bg-white/30 text-center"
 			>
-				<h2 className="text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-900 to-teal-400 mb-4">
-					Katalog Produk & Paten
-				</h2>
-				<p className="text-gray-500 mb-8">Hasil produk inovasi siap pakai dan paten teknologi kami.</p>
+				<h2 className="text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-900 to-teal-400 mb-4">{content.values["page_22"]}</h2>
+				<p className="text-gray-500 mb-8">{content.values["page_23"]}</p>
 				{produkData.length > 0 ? (
 					<div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-6">
 						{produkData.map((produk) => (
@@ -248,15 +226,13 @@ export default async function Home() {
 								</span>
 								<h3 className="font-bold text-lg mb-2 text-gray-900">{produk.nama}</h3>
 								<p className="text-gray-600 text-sm mb-4 line-clamp-2">{produk.deskripsi}</p>
-								<Link href={`/produk/${produk.id}`} className="text-blue-600 text-sm font-semibold hover:underline">
-									Lihat Produk
-								</Link>
+								<Link href={`/portofolio/${produk.id}`} className="text-blue-600 text-sm font-semibold hover:underline">{content.values["page_24"]}</Link>
 							</div>
 						))}
 					</div>
 				) : (
 					<div className="max-w-7xl mx-auto h-32 bg-white/60 backdrop-blur-sm rounded-2xl flex items-center justify-center border border-white shadow-sm">
-						<p className="text-gray-400 font-medium">Belum ada produk atau paten.</p>
+						<p className="text-gray-400 font-medium">{content.values["page_25"]}</p>
 					</div>
 				)}
 			</section>
@@ -267,15 +243,14 @@ export default async function Home() {
 				className="pt-20 pb-10 border-t border-teal-100/50 bg-white/40 backdrop-blur-sm"
 			>
 				<div className="max-w-7xl mx-auto px-6 text-center">
-					<h2 className="text-sm font-bold text-teal-600 tracking-widest uppercase mb-8">
-						Dipercaya Oleh Mitra Industri
-					</h2>
+					<h2 className="text-sm font-bold text-teal-600 tracking-widest uppercase mb-8">{content.values["page_26"]}</h2>
 					<div className="flex flex-wrap justify-center items-center gap-10 md:gap-20 opacity-60 grayscale hover:grayscale-0 transition-all duration-500">
-						<span className="text-2xl font-black font-serif text-blue-900">TECHCORP</span>
-						<span className="text-2xl font-black font-sans text-blue-900">ROBOSYS</span>
-						<span className="text-2xl font-black font-mono text-blue-900">MECHMACH</span>
-						<span className="text-2xl font-black text-blue-900 tracking-tighter">AI-AUTOM</span>
-					</div>
+						{content.partners.map((partner, index) => {
+              const classes = ["text-2xl font-black font-serif text-blue-900", "text-2xl font-black font-sans text-blue-900", "text-2xl font-black font-mono text-blue-900", "text-2xl font-black text-blue-900 tracking-tighter"];
+              const logo = partner.logo ? <img src={partner.logo} alt={partner.nama} className="h-12 max-w-40 object-contain" /> : <span className={classes[index % classes.length]}>{partner.nama}</span>;
+              return partner.url ? <a key={index} href={partner.url} target="_blank" rel="noopener noreferrer">{logo}</a> : <div key={index}>{logo}</div>;
+            })}
+          </div>
 				</div>
 			</section>
 
@@ -294,15 +269,11 @@ export default async function Home() {
 				<div className="bg-gradient-to-br from-blue-900 to-teal-600 rounded-[2.5rem] p-10 md:p-14 shadow-2xl flex flex-col md:flex-row items-center justify-between gap-10 relative overflow-hidden text-white">
 					<div className="absolute inset-0 bg-white/10 backdrop-blur-sm"></div>
 					<div className="flex-1 relative z-10">
-						<h2 className="text-3xl md:text-4xl font-extrabold mb-4">Program Magang SMK</h2>
-						<p className="text-blue-100 leading-relaxed text-lg font-medium">
-							Kami membuka kesempatan emas bagi siswa-siswi SMK untuk terjun langsung ke industri robotika dan otomasi.
-						</p>
+						<h2 className="text-3xl md:text-4xl font-extrabold mb-4">{content.values["page_31"]}</h2>
+						<p className="text-blue-100 leading-relaxed text-lg font-medium">{content.values["page_32"]}</p>
 					</div>
 					<div className="relative z-10">
-						<Link href="/magang" className="bg-white text-blue-900 px-8 py-4 rounded-2xl font-extrabold shadow-xl hover:scale-105 transition-all inline-block">
-							Daftar Magang Sekarang
-						</Link>
+						<Link href="/magang" className="bg-white text-blue-900 px-8 py-4 rounded-2xl font-extrabold shadow-xl hover:scale-105 transition-all inline-block">{content.values["page_33"]}</Link>
 					</div>
 				</div>
 			</section>

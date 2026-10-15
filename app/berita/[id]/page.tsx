@@ -1,3 +1,4 @@
+import { getSiteContent } from "../../../lib/content";
 import { prisma } from "../../../lib/prisma";
 import ClientNavigation from "../../components/ClientNavigation";
 import Footer from "../../components/Footer";
@@ -8,6 +9,7 @@ import { notFound } from "next/navigation";
 export const dynamic = 'force-dynamic';
 
 export default async function BeritaDetail({ params }: { params: Promise<{ id: string }> }) {
+	const content = await getSiteContent();
 	const resolvedParams = await params;
 	const id = parseInt(resolvedParams.id);
 	if (isNaN(id)) notFound();
@@ -37,8 +39,7 @@ export default async function BeritaDetail({ params }: { params: Promise<{ id: s
 			
 			<div className="max-w-4xl mx-auto px-6 mb-8">
 				<Link href="/berita" className="inline-flex items-center gap-2 text-blue-600 hover:text-teal-600 font-bold transition-colors">
-					<ArrowLeft size={18} /> Kembali ke Berita
-				</Link>
+					<ArrowLeft size={18} />{content.values["berita__id__page_1"]}</Link>
 			</div>
 
 			<section className="px-6 pb-20 max-w-4xl mx-auto">
@@ -70,14 +71,14 @@ export default async function BeritaDetail({ params }: { params: Promise<{ id: s
 						<div className="grid grid-cols-2 gap-4 mt-12 border-t border-gray-100 pt-8">
 							{prevItem ? (
 								<Link href={`/berita/${prevItem.id}`} className="group flex flex-col p-4 bg-gray-50 rounded-2xl hover:bg-teal-50 transition-colors border border-transparent hover:border-teal-100">
-									<span className="text-xs text-gray-500 font-semibold mb-1 flex items-center gap-1"><ArrowLeft size={14}/> Sebelumnya</span>
+									<span className="text-xs text-gray-500 font-semibold mb-1 flex items-center gap-1"><ArrowLeft size={14}/>{content.values["berita__id__page_2"]}</span>
 									<span className="font-bold text-gray-900 group-hover:text-teal-700 line-clamp-2">{prevItem.judul}</span>
 								</Link>
 							) : <div></div>}
 							
 							{nextItem ? (
 								<Link href={`/berita/${nextItem.id}`} className="group flex flex-col p-4 bg-gray-50 rounded-2xl hover:bg-teal-50 transition-colors text-right items-end border border-transparent hover:border-teal-100">
-									<span className="text-xs text-gray-500 font-semibold mb-1 flex items-center gap-1">Selanjutnya <ArrowLeft size={14} className="rotate-180"/></span>
+									<span className="text-xs text-gray-500 font-semibold mb-1 flex items-center gap-1">{content.values["berita__id__page_3"]}<ArrowLeft size={14} className="rotate-180"/></span>
 									<span className="font-bold text-gray-900 group-hover:text-teal-700 line-clamp-2">{nextItem.judul}</span>
 								</Link>
 							) : <div></div>}

@@ -1,4 +1,8 @@
 "use client";
+import { useSiteContent } from "../../lib/content-context";
+import type { Produk } from "@prisma/client";
+import { isRegisteredPortfolio, portfolioCategoryLabel, portfolioMatchesTab } from "../../lib/portfolio-model";
+
 
 import { useState } from "react";
 import Link from "next/link";
@@ -6,35 +10,20 @@ import { ArrowUpRight } from "lucide-react";
 import { motion } from "framer-motion";
 import CardCarousel from "../components/CardCarousel";
 
-export default function PortofolioClient({ allItems }: { allItems: any[] }) {
+export default function PortofolioClient({ allItems }: { allItems: Produk[] }) {
+	const content = useSiteContent();
 	const [activeTab, setActiveTab] = useState("Semua");
 
 	const capstoneItems = allItems.filter(item => item.kategori === "CAPSTONE_DESIGN");
-	const otherItems = allItems.filter(item => item.kategori !== "CAPSTONE_DESIGN");
-
-	// Filtering "All Works"
-	const filteredWorks = otherItems.filter(item => {
-		if (activeTab === "Semua") return true;
-		if (activeTab === "Paten" && item.kategori === "PATEN") return true;
-		if (activeTab === "Produk" && item.kategori === "PRODUK_BUATAN") return true;
-		return false;
-	});
-
-	// For Capstone Bento Grid (1 large left, 2 small right)
-	const mainCapstone = capstoneItems.length > 0 ? capstoneItems[0] : null;
-	const sideCapstones = capstoneItems.slice(1, 3);
+	const filteredWorks = allItems.filter(item => portfolioMatchesTab(item.kategori, activeTab));
 
 	return (
 		<div className="text-left w-full max-w-6xl mx-auto px-6 pb-20">
 			
 			{/* HERO HEADER */}
 			<div className="text-center max-w-3xl mx-auto mb-16 pt-6">
-				<h1 className="text-4xl md:text-5xl font-extrabold text-[#005a9c] mb-6 leading-tight tracking-tight">
-					Inovasi & Penemuan
-				</h1>
-				<p className="text-gray-500 text-lg md:text-xl font-medium leading-relaxed">
-					Jelajahi portofolio paten, publikasi terobosan, dan produk komersial kami yang dirancang untuk masa depan otomasi.
-				</p>
+				<h1 className="text-4xl md:text-5xl font-extrabold text-[#005a9c] mb-6 leading-tight tracking-tight">{content.values["portofolio_PortofolioClient_1"]}</h1>
+				<p className="text-gray-500 text-lg md:text-xl font-medium leading-relaxed">{content.values["portofolio_PortofolioClient_2"]}</p>
 			</div>
 
 			{/* CAPSTONE DESIGN SECTION (Bento Grid) */}
@@ -44,7 +33,7 @@ export default function PortofolioClient({ allItems }: { allItems: any[] }) {
 						<div className="p-2 bg-teal-100 rounded-lg text-teal-600">
 							<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/></svg>
 						</div>
-						<h2 className="text-2xl font-bold">Capstone Design</h2>
+						<h2 className="text-2xl font-bold">{content.values["portofolio_PortofolioClient_3"]}</h2>
 					</div>
 					
 					<div className="max-w-6xl mx-auto">
@@ -55,15 +44,12 @@ export default function PortofolioClient({ allItems }: { allItems: any[] }) {
 										<img src={item.gambar} alt={item.nama} className="absolute inset-0 w-full h-full object-cover opacity-10 transition-transform duration-700 group-hover:scale-105 rounded-3xl" />
 									)}
 									<div className="relative z-10 flex flex-col h-full">
-										<span className="inline-block bg-[#e0f2fe] text-[#005a9c] text-xs font-bold px-3 py-1 rounded-full mb-4 w-max shadow-sm border border-blue-100">
-											Robotics
-										</span>
+										<span className="inline-block bg-[#e0f2fe] text-[#005a9c] text-xs font-bold px-3 py-1 rounded-full mb-4 w-max shadow-sm border border-blue-100">{content.values["portofolio_PortofolioClient_4"]}</span>
 										<h3 className="text-2xl font-bold text-[#001738] mb-4">{item.nama}</h3>
 										<p className="text-gray-600 text-sm leading-relaxed mb-6 line-clamp-3">
 											{item.deskripsi}
 										</p>
-										<Link href={`/portofolio/${item.id}`} className="mt-auto text-[#005a9c] font-bold text-sm flex items-center gap-1 hover:underline">
-											Lihat Detail <ArrowUpRight size={16} />
+										<Link href={`/portofolio/${item.id}`} className="mt-auto text-[#005a9c] font-bold text-sm flex items-center gap-1 hover:underline">{content.values["portofolio_PortofolioClient_5"]}<ArrowUpRight size={16} />
 										</Link>
 									</div>
 								</div>
@@ -76,7 +62,7 @@ export default function PortofolioClient({ allItems }: { allItems: any[] }) {
 			{/* ALL WORKS SECTION */}
 			<div>
 				<div className="flex flex-col md:flex-row items-center justify-between mb-8 gap-4">
-					<h2 className="text-3xl font-bold text-[#001738]">Semua Karya</h2>
+					<h2 className="text-3xl font-bold text-[#001738]">{content.values["portofolio_PortofolioClient_6"]}</h2>
 					
 					{/* Tabs */}
 					<div className="flex items-center gap-1 bg-white rounded-full p-1 shadow-sm border border-gray-100">
@@ -90,7 +76,7 @@ export default function PortofolioClient({ allItems }: { allItems: any[] }) {
 										: "text-gray-500 hover:text-gray-700 hover:bg-slate-50"
 								}`}
 							>
-								{tab}
+								{content.values[`portfolio_tab_${tab}`]}
 							</button>
 						))}
 					</div>
@@ -122,10 +108,10 @@ export default function PortofolioClient({ allItems }: { allItems: any[] }) {
 									
 									<div className="flex items-center justify-between mb-3">
 										<span className="bg-slate-100 text-slate-600 text-[10px] font-bold px-2 py-1 rounded-md uppercase tracking-wider">
-											{item.kategori === "PATEN" ? "Paten" : "Produk"}
+											{portfolioCategoryLabel(item.kategori, content.values)}
 										</span>
 										<span className="text-[10px] text-gray-400 font-medium">
-											{item.kategori === "PATEN" ? `US-${item.createdAt.getFullYear()}-${item.id}A` : "Tersedia"}
+											{isRegisteredPortfolio(item.kategori) ? content.values.portfolio_patent_status : item.kategori === "PUBLIKASI" ? content.values.portfolio_media_status : content.values.portfolio_available}
 										</span>
 									</div>
 
@@ -138,15 +124,13 @@ export default function PortofolioClient({ allItems }: { allItems: any[] }) {
 										href={`/portofolio/${item.id}`} 
 										className="mt-auto w-full py-2 border border-[#005a9c]/20 text-[#005a9c] text-xs font-bold rounded-lg text-center hover:bg-[#e0f2fe] transition-colors"
 									>
-										{item.kategori === "PATEN" ? "Lihat Detail" : "Halaman Produk"}
+										{item.kategori === "PRODUK_BUATAN" ? content.values.portfolio_product : content.values.portfolio_detail}
 									</Link>
 								</motion.div>
 							))}
 						</CardCarousel>
 					) : (
-						<div className="text-center py-12 text-gray-400 text-sm w-full">
-							Belum ada item untuk kategori ini.
-						</div>
+						<div className="text-center py-12 text-gray-400 text-sm w-full">{content.values["portofolio_PortofolioClient_7"]}</div>
 					)}
 				</div>
 			</div>

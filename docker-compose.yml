@@ -6,15 +6,29 @@ services:
     container_name: landing_page_web
     restart: unless-stopped
     ports:
-      - "4005:4005"
+      - "${SYNERGIX_WEB_PORT:-4005}:4005"
     environment:
-      # Kita 'override' DATABASE_URL khusus saat web app berjalan di dalam Docker.
-      # Di dalam jaringan Docker, host-nya bernama 'db' dan port internal MySQL adalah 3306.
-      - DATABASE_URL=mysql://admin_user:@synergix48@db:3306/landing_page_db
+      MYSQL_USER: ${MYSQL_USER:?Isi MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD:?Isi MYSQL_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE:?Isi MYSQL_DATABASE}
+      NEXTAUTH_SECRET: ${NEXTAUTH_SECRET:?Isi NEXTAUTH_SECRET}
+      NEXTAUTH_URL: ${NEXTAUTH_URL:?Isi NEXTAUTH_URL sesuai URL publik}
+      ADMIN_USERNAME: ${ADMIN_USERNAME:-}
+      ADMIN_PASSWORD: ${ADMIN_PASSWORD:-}
+      ADMIN_NAME: ${ADMIN_NAME:-Administrator}
+      PORT: "4005"
+    healthcheck:
+      test: ["CMD", "node", "-e", "fetch('http://127.0.0.1:4005/api/health').then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 30s
     depends_on:
-      - db
+      db:
+        condition: service_healthy
     volumes:
       - ./public:/app/public
+      - private_uploads:/app/private-uploads
     networks:
       - app-network
 
@@ -23,13 +37,18 @@ services:
     container_name: landing_page_db
     restart: unless-stopped
     ports:
-      - "4006:3306"
+      - "127.0.0.1:${SYNERGIX_DB_PORT:-4006}:3306"
     environment:
-      # Nilai ini diambil otomatis dari file .env oleh Docker Compose
-      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
-      MYSQL_DATABASE: ${MYSQL_DATABASE}
-      MYSQL_USER: ${MYSQL_USER}
-      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:?Isi MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE:?Isi MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER:?Isi MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD:?Isi MYSQL_PASSWORD}
+    healthcheck:
+      test: ["CMD-SHELL", "mysqladmin ping -h localhost --silent"]
+      interval: 10s
+      timeout: 5s
+      retries: 12
+      start_period: 30s
     volumes:
       - db_data:/var/lib/mysql
     networks:
@@ -40,18 +59,18 @@ services:
     container_name: landing_page_pma
     restart: unless-stopped
     ports:
-      - "4007:80"
+      - "127.0.0.1:${SYNERGIX_PMA_PORT:-4007}:80"
     environment:
       PMA_HOST: db
-      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
     depends_on:
-      - db
+      db:
+        condition: service_healthy
     networks:
       - app-network
 
 networks:
   app-network:
     driver: bridge
-
 volumes:
   db_data:
+  private_uploads:

@@ -1,9 +1,11 @@
 "use server";
 
+import { requireAdmin } from "../../lib/admin";
 import { prisma } from "../../lib/prisma";
 import { revalidatePath } from "next/cache";
 
 export async function saveLayanan(data: { id?: number, judul: string, deskripsi: string, gambar?: string, ikon?: string }) {
+	await requireAdmin();
 	try {
 		if (data.id) {
 			await prisma.layanan.update({
@@ -35,6 +37,7 @@ export async function saveLayanan(data: { id?: number, judul: string, deskripsi:
 }
 
 export async function deleteLayanan(id: number) {
+	await requireAdmin();
 	try {
 		await prisma.layanan.delete({ where: { id } });
 		revalidatePath("/");

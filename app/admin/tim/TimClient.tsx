@@ -4,32 +4,27 @@ import { useState } from "react";
 import { Plus, Edit, Trash2, X, Save, Image as ImageIcon, Loader2 } from "lucide-react";
 import { createTim, updateTim, deleteTim } from "../../actions/tim";
 import { uploadImage } from "../../actions/upload";
+import type { Keanggotaan, PeranAnggota } from "@prisma/client";
+import { academicEntries, researchEntries } from "../../../lib/team-data";
 import toast from "react-hot-toast";
+import { importSinta } from "../../actions/sinta";
+import type { AcademicEntry } from "../../../lib/sinta-parser";
+import { teamStatistics, normalizeSintaStatistics, type SintaStatistics } from "../../../lib/team-statistics";
+import AcademicEditor from "./AcademicEditor";
 
-type PeranAnggota = "PIMPINAN" | "KETUA" | "ANGGOTA_PERISET" | "WAKIL" | "PENELITI_UTAMA" | "DOSEN_PEMBIMBING" | "ANGGOTA" | "PENELITI_ALUMNI";
-
-type Tim = {
-	id: number;
-	nama: string;
-	peran: PeranAnggota;
-	jabatan: string | null;
-	biografi: string | null;
-	gelar: string | null;
-	pengalaman: string | null;
-	lokasi: string | null;
-	jumlahPublikasi: string | null;
-	publikasi: any;
-	riset: any;
-	paten: string | null;
-	foto: string | null;
-	createdAt: Date;
-	updatedAt: Date;
-};
+type Tim = Keanggotaan;
 
 export default function TimClient({ initialData }: { initialData: Tim[] }) {
 	const [isModalOpen, setIsModalOpen] = useState(false);
 	const [editData, setEditData] = useState<Tim | null>(null);
 	const [loading, setLoading] = useState(false);
+	const [sintaUrl, setSintaUrl] = useState("");
+	const [importing, setImporting] = useState(false);
+	const [hakCipta, setHakCipta] = useState<AcademicEntry[]>([]);
+	const [pengabdian, setPengabdian] = useState<AcademicEntry[]>([]);
+	const [email, setEmail] = useState("");
+	const [linkedin, setLinkedin] = useState("");
+	const [konsultasiUrl, setKonsultasiUrl] = useState("");
 
 	// Form states
 	const [nama, setNama] = useState("");
@@ -38,18 +33,25 @@ export default function TimClient({ initialData }: { initialData: Tim[] }) {
 	const [gelar, setGelar] = useState("");
 	const [pengalaman, setPengalaman] = useState("");
 	const [lokasi, setLokasi] = useState("");
-	const [paten, setPaten] = useState("");
-	const [jumlahPublikasi, setJumlahPublikasi] = useState("");
+	const [sintaStatistik, setSintaStatistik] = useState<SintaStatistics>({});
 	const [biografi, setBiografi] = useState("");
 	
 	const [riset, setRiset] = useState<{judul: string, desc: string, tags: string}[]>([]);
-	const [publikasi, setPublikasi] = useState<{judul: string, jurnal: string}[]>([]);
+	const [publikasi, setPublikasi] = useState<AcademicEntry[]>([]);
 
+	const statistics = teamStatistics({ publikasi, hakCipta, riset, sintaStatistik });
 	const [file, setFile] = useState<File | null>(null);
 	const [previewUrl, setPreviewUrl] = useState<string | null>(null);
 
 	const openModal = (data: Tim | null = null) => {
 		setEditData(data);
+		setSintaUrl(data?.sintaUrl || "");
+		setSintaStatistik(normalizeSintaStatistics(data?.sintaStatistik));
+		setHakCipta(academicEntries(data?.hakCipta));
+		setPengabdian(academicEntries(data?.pengabdian));
+		setEmail(data?.email || "");
+		setLinkedin(data?.linkedin || "");
+		setKonsultasiUrl(data?.konsultasiUrl || "");
 		if (data) {
 			setNama(data.nama);
 			setPeran(data.peran);
@@ -57,19 +59,17 @@ export default function TimClient({ initialData }: { initialData: Tim[] }) {
 			setGelar(data.gelar || "");
 			setPengalaman(data.pengalaman || "");
 			setLokasi(data.lokasi || "");
-			setPaten(data.paten || "");
-			setJumlahPublikasi(data.jumlahPublikasi || "");
 			setBiografi(data.biografi || "");
 			setPreviewUrl(data.foto || null);
 			
 			if (data.riset) {
-				setRiset(Array.isArray(data.riset) ? data.riset : []);
+				setRiset(researchEntries(data.riset).map(r => ({ judul: r.judul, desc: r.deskripsi, tags: r.tags.join(", ") })));
 			} else {
 				setRiset([]);
 			}
 			
 			if (data.publikasi) {
-				setPublikasi(Array.isArray(data.publikasi) ? data.publikasi : []);
+				setPublikasi(academicEntries(data.publikasi));
 			} else {
 				setPublikasi([]);
 			}
@@ -80,8 +80,6 @@ export default function TimClient({ initialData }: { initialData: Tim[] }) {
 			setGelar("");
 			setPengalaman("");
 			setLokasi("");
-			setPaten("");
-			setJumlahPublikasi("");
 			setBiografi("");
 			setRiset([]);
 			setPublikasi([]);
@@ -94,6 +92,25 @@ export default function TimClient({ initialData }: { initialData: Tim[] }) {
 	const closeModal = () => {
 		setIsModalOpen(false);
 		setEditData(null);
+	};
+
+	const crawlSinta = async () => {
+		setImporting(true);
+		try {
+			const result = await importSinta(sintaUrl);
+			if (result.error || !result.data) throw new Error(result.error || "Tidak ada hasil impor.");
+			const hasData = Object.values(result.data).some(entries => entries.length > 0);
+			if (!hasData) throw new Error(result.warnings?.join("\n") || "Data SINTA tidak ditemukan.");
+			if ((publikasi.length || hakCipta.length || pengabdian.length) && !confirm("Ganti daftar kategori yang berhasil diambil dengan hasil SINTA? Hasil belum disimpan sampai Anda menekan Simpan Profil Tim.")) return;
+			if (result.data.scopus?.length) setPublikasi(result.data.scopus);
+			if (result.data.services?.length) setPengabdian(result.data.services);
+			if (result.data.iprs?.length) setHakCipta(result.data.iprs);
+			setSintaUrl(result.profileUrl);
+			setSintaStatistik(previous => ({ ...previous, ...(result.data.scopus?.length && result.statistics?.publications ? { publications: result.statistics.publications } : {}), ...(result.data.iprs?.length && result.statistics?.patents ? { patents: result.statistics.patents } : {}) }));
+			toast.success("Hasil SINTA dimuat. Tinjau dan simpan profil untuk menerapkan.");
+			if (result.warnings?.length) toast(result.warnings.join("\n"), { duration: 10000 });
+		} catch (error) { toast.error(error instanceof Error ? error.message : "Gagal mengimpor SINTA.", { duration: 10000 }); }
+		finally { setImporting(false); }
 	};
 
 	const handleSubmit = async (e: React.FormEvent) => {
@@ -119,7 +136,7 @@ export default function TimClient({ initialData }: { initialData: Tim[] }) {
 			// Format tags for riset
 			const formattedRiset = riset.map(r => ({
 				judul: r.judul,
-				desc: r.desc,
+				deskripsi: r.desc,
 				tags: typeof r.tags === 'string' ? r.tags.split(',').map(t => t.trim()).filter(Boolean) : r.tags
 			}));
 
@@ -129,12 +146,11 @@ export default function TimClient({ initialData }: { initialData: Tim[] }) {
 				jabatan, 
 				gelar, 
 				pengalaman, 
-				lokasi, 
-				paten, 
-				jumlahPublikasi, 
+				lokasi,   
 				biografi,
 				riset: formattedRiset,
 				publikasi,
+				sintaUrl, sintaStatistik, hakCipta, pengabdian, email, linkedin, konsultasiUrl,
 				foto: imageUrl || undefined 
 			};
 
@@ -260,6 +276,9 @@ export default function TimClient({ initialData }: { initialData: Tim[] }) {
 						
 						<div className="p-6 overflow-y-auto">
 							<form id="timForm" onSubmit={handleSubmit} className="space-y-8">
+								<div className="bg-blue-50 rounded-xl p-4 space-y-3"><h3 className="font-bold text-blue-900">Impor Profil SINTA</h3><p className="text-sm text-gray-600">Publikasi: Scopus · Pengabdian: Services · Hak cipta: IPRs. Tampilkan 4 entri terbaru. Jumlah publikasi dan paten dihitung otomatis dari SINTA; hak cipta tidak dihitung sebagai paten.</p><input value={sintaUrl} onChange={e => setSintaUrl(e.target.value)} placeholder="ID atau URL profil SINTA" className="w-full border rounded-lg p-3" /><button type="button" disabled={loading || importing || !sintaUrl.trim()} onClick={crawlSinta} className="bg-blue-700 text-white px-4 py-2 rounded-lg disabled:opacity-50">{importing ? "Mengambil data..." : "Ambil Data SINTA"}</button></div>
+								<div className="grid md:grid-cols-3 gap-4">{([['Email', email, setEmail], ['LinkedIn', linkedin, setLinkedin], ['URL konsultasi', konsultasiUrl, setKonsultasiUrl]] as const).map(([label, value, change]) => <label key={label} className="text-sm font-bold">{label}<input value={value} onChange={e => change(e.target.value)} className="w-full mt-2 border rounded-lg p-3" /></label>)}</div>
+								<div className="grid md:grid-cols-2 gap-8"><AcademicEditor title="Hak Cipta & Paten (IPRs)" showType entries={hakCipta} onChange={setHakCipta} /><AcademicEditor title="Pengabdian (Services)" entries={pengabdian} onChange={setPengabdian} /></div>
 								{/* SEKSI 1: Info Dasar */}
 								<div>
 									<h3 className="text-lg font-bold text-blue-900 border-b border-gray-100 pb-2 mb-4">Informasi Dasar</h3>
@@ -271,7 +290,9 @@ export default function TimClient({ initialData }: { initialData: Tim[] }) {
 										<div>
 											<label className="block text-sm font-bold text-gray-700 mb-2">Peran (Sistem)</label>
 											<select value={peran} onChange={(e) => setPeran(e.target.value)} className="w-full bg-gray-50 border border-gray-200 text-gray-900 rounded-xl px-4 py-3 focus:ring-2 focus:ring-teal-500 appearance-none">
-												<option value="KETUA">Ketua (Pimpinan)</option>
+												<option value="PIMPINAN">Pimpinan</option>
+<option value="ANGGOTA_PERISET">Anggota Periset (lama)</option>
+<option value="KETUA">Ketua (Pimpinan)</option>
 												<option value="WAKIL">Wakil</option>
 												<option value="PENELITI_UTAMA">Peneliti Utama (Pimpinan)</option>
 												<option value="DOSEN_PEMBIMBING">Dosen Pembimbing</option>
@@ -300,11 +321,11 @@ export default function TimClient({ initialData }: { initialData: Tim[] }) {
 										</div>
 										<div>
 											<label className="block text-sm font-bold text-gray-700 mb-2">Jumlah Paten</label>
-											<input type="text" value={paten} onChange={(e) => setPaten(e.target.value)} className="w-full bg-gray-50 border border-gray-200 text-gray-900 rounded-xl px-4 py-3 focus:ring-2 focus:ring-teal-500" placeholder="Contoh: 24 Terdaftar" />
+											<input type="text" value={statistics.patents} readOnly className="w-full bg-gray-50 border border-gray-200 text-gray-900 rounded-xl px-4 py-3 focus:ring-2 focus:ring-teal-500" placeholder="Otomatis dari IPRs" />
 										</div>
 										<div>
 											<label className="block text-sm font-bold text-gray-700 mb-2">Jumlah Publikasi</label>
-											<input type="text" value={jumlahPublikasi} onChange={(e) => setJumlahPublikasi(e.target.value)} className="w-full bg-gray-50 border border-gray-200 text-gray-900 rounded-xl px-4 py-3 focus:ring-2 focus:ring-teal-500" placeholder="Contoh: 100+ Sitasi" />
+											<input type="text" value={statistics.publications} readOnly className="w-full bg-gray-50 border border-gray-200 text-gray-900 rounded-xl px-4 py-3 focus:ring-2 focus:ring-teal-500" placeholder="Otomatis dari Scopus" />
 										</div>
 										<div>
 											<label className="block text-sm font-bold text-gray-700 mb-2">Lokasi</label>
@@ -322,7 +343,7 @@ export default function TimClient({ initialData }: { initialData: Tim[] }) {
 									{/* RISET */}
 									<div>
 										<div className="flex justify-between items-center mb-4">
-											<h3 className="text-lg font-bold text-blue-900">Riset Berjalan</h3>
+											<h3 className="text-lg font-bold text-blue-900">Riset Berjalan ({statistics.research})</h3>
 											<button type="button" onClick={() => setRiset([...riset, {judul: "", desc: "", tags: ""}])} className="text-xs bg-blue-100 text-blue-700 font-bold px-2 py-1 rounded flex items-center gap-1"><Plus size={14}/> Tambah</button>
 										</div>
 										<div className="space-y-4">
@@ -331,28 +352,13 @@ export default function TimClient({ initialData }: { initialData: Tim[] }) {
 													<button type="button" onClick={() => setRiset(riset.filter((_, idx) => idx !== i))} className="absolute top-3 right-3 text-red-500 hover:text-red-700"><Trash2 size={16} /></button>
 													<input type="text" placeholder="Judul Riset" value={r.judul} onChange={(e) => {const n = [...riset]; n[i].judul = e.target.value; setRiset(n)}} className="w-full mb-2 bg-white border border-gray-200 text-gray-900 rounded px-3 py-1.5 text-sm" />
 													<textarea placeholder="Deskripsi Singkat" value={r.desc} onChange={(e) => {const n = [...riset]; n[i].desc = e.target.value; setRiset(n)}} className="w-full mb-2 bg-white border border-gray-200 text-gray-900 rounded px-3 py-1.5 text-sm resize-none" rows={2} />
-													<input type="text" placeholder="Tags (Pisahkan koma)" value={typeof r.tags === 'string' ? r.tags : r.tags?.join(', ') || ""} onChange={(e) => {const n = [...riset]; n[i].tags = e.target.value; setRiset(n)}} className="w-full bg-white border border-gray-200 text-gray-900 rounded px-3 py-1.5 text-sm" />
+													<input type="text" placeholder="Tags (Pisahkan koma)" value={typeof r.tags === 'string' ? r.tags : String(r.tags || "")} onChange={(e) => {const n = [...riset]; n[i].tags = e.target.value; setRiset(n)}} className="w-full bg-white border border-gray-200 text-gray-900 rounded px-3 py-1.5 text-sm" />
 												</div>
 											))}
 										</div>
 									</div>
 
-									{/* PUBLIKASI */}
-									<div>
-										<div className="flex justify-between items-center mb-4">
-											<h3 className="text-lg font-bold text-blue-900">Publikasi Terbaru</h3>
-											<button type="button" onClick={() => setPublikasi([...publikasi, {judul: "", jurnal: ""}])} className="text-xs bg-teal-100 text-teal-700 font-bold px-2 py-1 rounded flex items-center gap-1"><Plus size={14}/> Tambah</button>
-										</div>
-										<div className="space-y-4">
-											{publikasi.map((p, i) => (
-												<div key={i} className="bg-gray-50 p-4 rounded-xl border border-gray-200 relative">
-													<button type="button" onClick={() => setPublikasi(publikasi.filter((_, idx) => idx !== i))} className="absolute top-3 right-3 text-red-500 hover:text-red-700"><Trash2 size={16} /></button>
-													<input type="text" placeholder="Judul Publikasi" value={p.judul} onChange={(e) => {const n = [...publikasi]; n[i].judul = e.target.value; setPublikasi(n)}} className="w-full mb-2 bg-white border border-gray-200 text-gray-900 rounded px-3 py-1.5 text-sm" />
-													<input type="text" placeholder="Nama Jurnal / Konferensi (Tahun)" value={p.jurnal} onChange={(e) => {const n = [...publikasi]; n[i].jurnal = e.target.value; setPublikasi(n)}} className="w-full bg-white border border-gray-200 text-gray-900 rounded px-3 py-1.5 text-sm" />
-												</div>
-											))}
-										</div>
-									</div>
+									<AcademicEditor title="Publikasi Terbaru (Scopus)" entries={publikasi} onChange={setPublikasi} />
 								</div>
 
 								{/* SEKSI 4: Foto */}
@@ -396,7 +402,7 @@ export default function TimClient({ initialData }: { initialData: Tim[] }) {
 							<button
 								type="submit"
 								form="timForm"
-								disabled={loading}
+								disabled={loading || importing}
 								className="bg-teal-600 hover:bg-teal-700 text-white px-6 py-2.5 rounded-xl text-sm font-bold flex items-center gap-2 transition-all disabled:opacity-70 shadow-md"
 							>
 								{loading ? <Loader2 size={16} className="animate-spin" /> : <Save size={16} />}

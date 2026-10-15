@@ -1,10 +1,13 @@
 "use client";
+import { useSiteContent } from "../../lib/content-context";
+
 
 import Link from "next/link";
 import { useState, useEffect } from "react";
 import { usePathname } from "next/navigation";
 
 export default function ClientNavigation() {
+	const content = useSiteContent();
 	const [isScrolled, setIsScrolled] = useState(false);
 	const pathname = usePathname();
 
@@ -17,12 +20,12 @@ export default function ClientNavigation() {
 	}, []);
 
 	const navLinks = [
-		{ id: "beranda", label: "Beranda", href: "/" },
-		{ id: "layanan", label: "Layanan", href: "/layanan" },
-		{ id: "tim", label: "Tim", href: "/tim" },
-		{ id: "portofolio", label: "Portofolio & Produk", href: "/portofolio" },
-		{ id: "berita", label: "Berita", href: "/berita" },
-		{ id: "magang", label: "Magang", href: "/magang" },
+		{ id: "beranda", label: content.values["components_ClientNavigation_1"], href: "/" },
+		{ id: "layanan", label: content.values["components_ClientNavigation_2"], href: "/layanan" },
+		{ id: "tim", label: content.values["components_ClientNavigation_3"], href: "/tim" },
+		{ id: "portofolio", label: content.values["components_ClientNavigation_4"], href: "/portofolio" },
+		{ id: "berita", label: content.values["components_ClientNavigation_5"], href: "/berita" },
+		{ id: "magang", label: content.values["components_ClientNavigation_6"], href: "/magang" },
 	];
 
 	return (
@@ -31,10 +34,8 @@ export default function ClientNavigation() {
 		>
 			<div className="max-w-7xl mx-auto px-6 flex justify-between items-center">
 				<Link href="/" className="flex items-center gap-2">
-					<img src="/logo.png" alt="Logo" className="h-8 object-contain" />
-					<span className="font-bold text-xl text-transparent bg-clip-text bg-gradient-to-r from-blue-900 to-teal-400">
-						SynergiX
-					</span>
+					<img src={content.values["components_ClientNavigation_7"]} alt={content.values["components_ClientNavigation_8"]} className="h-8 object-contain" />
+					<span className="font-bold text-xl text-transparent bg-clip-text bg-gradient-to-r from-blue-900 to-teal-400">{content.values["components_ClientNavigation_9"]}</span>
 				</Link>
 
 				<div className="hidden md:flex gap-6 text-sm font-semibold">
@@ -61,9 +62,7 @@ export default function ClientNavigation() {
 					<Link
 						href="/#kontak"
 						className="bg-gradient-to-r from-blue-900 to-teal-500 text-white px-6 py-2.5 rounded-full text-sm font-bold hover:shadow-lg hover:-translate-y-0.5 transition-all inline-block"
-					>
-						Hubungi Kami
-					</Link>
+					>{content.values["components_ClientNavigation_10"]}</Link>
 				</div>
 			</div>
 		</nav>

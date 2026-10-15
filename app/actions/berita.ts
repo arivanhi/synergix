@@ -1,12 +1,16 @@
 "use server";
 
+import { requireAdmin } from "../../lib/admin";
 import { prisma } from "../../lib/prisma";
 import { revalidatePath } from "next/cache";
 
 export async function createBerita(data: { judul: string; konten: string; gambar?: string }) {
+	await requireAdmin();
 	try {
 		await prisma.berita.create({ data });
 		revalidatePath("/");
+		revalidatePath("/berita");
+		revalidatePath("/berita/[id]", "page");
 		revalidatePath("/admin/berita");
 		return { success: true };
 	} catch (error) {
@@ -16,12 +20,15 @@ export async function createBerita(data: { judul: string; konten: string; gambar
 }
 
 export async function updateBerita(id: number, data: { judul: string; konten: string; gambar?: string }) {
+	await requireAdmin();
 	try {
 		await prisma.berita.update({
 			where: { id },
 			data,
 		});
 		revalidatePath("/");
+		revalidatePath("/berita");
+		revalidatePath("/berita/[id]", "page");
 		revalidatePath("/admin/berita");
 		return { success: true };
 	} catch (error) {
@@ -31,9 +38,12 @@ export async function updateBerita(id: number, data: { judul: string; konten: st
 }
 
 export async function deleteBerita(id: number) {
+	await requireAdmin();
 	try {
 		await prisma.berita.delete({ where: { id } });
 		revalidatePath("/");
+		revalidatePath("/berita");
+		revalidatePath("/berita/[id]", "page");
 		revalidatePath("/admin/berita");
 		return { success: true };
 	} catch (error) {

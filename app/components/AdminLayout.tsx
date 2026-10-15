@@ -1,5 +1,6 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import { signOut } from "next-auth/react";
 import { usePathname } from "next/navigation";
@@ -27,6 +28,15 @@ interface AdminLayoutProps {
 
 export default function AdminLayout({ children, user }: AdminLayoutProps) {
 	const pathname = usePathname();
+  const [query, setQuery] = useState("");
+  const [results, setResults] = useState<{ title: string; href: string }[]>([]);
+  const [pending, setPending] = useState(0);
+  useEffect(() => { const controller = new AbortController(); fetch("/api/admin/overview", { signal: controller.signal }).then(r => r.ok ? r.json() : null).then(data => { if (data) setPending(data.pending); }).catch(() => {}); return () => controller.abort(); }, [pathname]);
+  useEffect(() => {
+    const controller = new AbortController();
+    const timer = setTimeout(() => { if (query.trim()) fetch("/api/admin/search?q=" + encodeURIComponent(query), { signal: controller.signal }).then(r => r.ok ? r.json() : []).then(setResults).catch(() => {}); }, 250);
+    return () => { clearTimeout(timer); controller.abort(); };
+  }, [query]);
 
 	const isActive = (path: string) => {
 		if (path === "/admin" && pathname === "/admin") return true;
@@ -35,6 +45,9 @@ export default function AdminLayout({ children, user }: AdminLayoutProps) {
 	};
 
 	const navItems = [
+		{ name: "Konten Website & Mitra", path: "/admin/konten", icon: Globe },
+		{ name: "Konsultasi", path: "/admin/konsultasi", icon: MessageSquare },
+		{ name: "Aktivitas", path: "/admin/aktivitas", icon: Bell },
 		{ name: "Ringkasan", path: "/admin", icon: LayoutDashboard },
 		{ name: "Layanan Web", path: "/admin/layanan-web", icon: Globe },
 		{ name: "Produk", path: "/admin/produk", icon: Package },
@@ -93,16 +106,16 @@ export default function AdminLayout({ children, user }: AdminLayoutProps) {
 						</div>
 						<input
 							type="text"
-							placeholder="Cari di dashboard..."
+							value={query} onChange={e => { setQuery(e.target.value); setResults([]); }} placeholder="Cari di dashboard..."
 							className="w-full bg-white border border-gray-200 rounded-lg pl-10 pr-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm shadow-sm"
-						/>
+						/>{query.trim() && <div className="absolute top-full left-0 right-0 bg-white shadow-xl border rounded-lg max-h-72 overflow-auto z-50">{results.length ? results.map((r, i) => <Link key={i} href={r.href} onClick={() => { setQuery(""); setResults([]); }} className="block p-3 text-sm hover:bg-blue-50">{r.title}</Link>) : <p className="p-3 text-sm text-gray-500">Tidak ada hasil.</p>}</div>}
 					</div>
 
 					<div className="flex items-center gap-6">
-						<button className="relative text-gray-500 hover:text-blue-600 transition-colors">
+						<Link href="/admin/aktivitas" aria-label={`Notifikasi: ${pending} permintaan belum diproses`} className="relative text-gray-500 hover:text-blue-600 transition-colors">
 							<Bell size={22} />
-							<span className="absolute top-0 right-0 w-2.5 h-2.5 bg-red-500 border-2 border-[#f4f7fb] rounded-full"></span>
-						</button>
+							{pending > 0 && <span className="absolute -top-2 -right-2 rounded-full bg-red-500 text-white text-[10px] px-1">{pending}</span>}
+						</Link>
 						<button
 							onClick={() => signOut({ callbackUrl: `${window.location.origin}/login` })}
 							className="bg-blue-700 hover:bg-blue-800 text-white px-5 py-2.5 rounded-lg text-sm font-bold flex items-center gap-2 shadow-md transition-colors"

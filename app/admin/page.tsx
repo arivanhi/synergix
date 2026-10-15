@@ -1,6 +1,6 @@
 import { getServerSession } from "next-auth/next";
-import { authOptions } from "../api/auth/[...nextauth]/route";
-import { prisma } from "../../lib/prisma";
+import { authOptions } from "../../lib/auth";
+import { getOverview } from "../../lib/overview";
 import AdminDashboardClient from "../components/AdminDashboardClient";
 import { redirect } from "next/navigation";
 
@@ -13,17 +13,9 @@ export default async function AdminDashboard() {
 		redirect("/login");
 	}
 
-	const totalProduk = await prisma.produk.count();
-	const pendaftarMagang = await prisma.pendaftarMagang.count();
-	const totalBerita = await prisma.berita.count();
-
-	const stats = {
-		totalProduk,
-		pendaftarMagang,
-		totalBerita,
-	};
+	const overview = await getOverview();
 
 	return (
-		<AdminDashboardClient stats={stats} user={session.user || {}} />
+		<AdminDashboardClient stats={overview.stats} activities={overview.activities.slice(0, 5)} days={overview.days} user={session.user || {}} />
 	);
 }

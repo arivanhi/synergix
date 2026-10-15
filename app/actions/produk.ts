@@ -1,13 +1,18 @@
 "use server";
 
+import { requireAdmin } from "../../lib/admin";
 import { prisma } from "../../lib/prisma";
 import { revalidatePath } from "next/cache";
 import { KategoriProduk } from "@prisma/client";
+import { normalizePortfolioSourceUrl } from "../../lib/portfolio-model";
 
-export async function createProduk(data: { nama: string; deskripsi: string; kategori: KategoriProduk; gambar?: string }) {
+export async function createProduk(data: { nama: string; deskripsi: string; kategori: KategoriProduk; gambar?: string; sourceUrl?: string }) {
+	await requireAdmin();
 	try {
-		await prisma.produk.create({ data });
+		await prisma.produk.create({ data: { ...data, sourceUrl: normalizePortfolioSourceUrl(data.sourceUrl) } });
 		revalidatePath("/");
+		revalidatePath("/portofolio");
+		revalidatePath("/portofolio/[id]", "page");
 		revalidatePath("/admin/produk");
 		return { success: true };
 	} catch (error) {
@@ -16,13 +21,16 @@ export async function createProduk(data: { nama: string; deskripsi: string; kate
 	}
 }
 
-export async function updateProduk(id: number, data: { nama: string; deskripsi: string; kategori: KategoriProduk; gambar?: string }) {
+export async function updateProduk(id: number, data: { nama: string; deskripsi: string; kategori: KategoriProduk; gambar?: string; sourceUrl?: string }) {
+	await requireAdmin();
 	try {
 		await prisma.produk.update({
 			where: { id },
-			data,
+			data: { ...data, sourceUrl: normalizePortfolioSourceUrl(data.sourceUrl) },
 		});
 		revalidatePath("/");
+		revalidatePath("/portofolio");
+		revalidatePath("/portofolio/[id]", "page");
 		revalidatePath("/admin/produk");
 		return { success: true };
 	} catch (error) {
@@ -32,9 +40,12 @@ export async function updateProduk(id: number, data: { nama: string; deskripsi: 
 }
 
 export async function deleteProduk(id: number) {
+	await requireAdmin();
 	try {
 		await prisma.produk.delete({ where: { id } });
 		revalidatePath("/");
+		revalidatePath("/portofolio");
+		revalidatePath("/portofolio/[id]", "page");
 		revalidatePath("/admin/produk");
 		return { success: true };
 	} catch (error) {

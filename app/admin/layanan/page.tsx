@@ -1,14 +1,16 @@
+import { redirect } from "next/navigation";
 import { prisma } from "../../../lib/prisma";
 import AdminLayout from "../../components/AdminLayout";
 import { Check, X, Clock } from "lucide-react";
 import { updateStatusMagang } from "../../actions/magang";
 import { getServerSession } from "next-auth/next";
-import { authOptions } from "../../api/auth/[...nextauth]/route";
+import { authOptions } from "../../../lib/auth";
 
 export const dynamic = 'force-dynamic';
 
 export default async function LayananAdminPage() {
 	const session = await getServerSession(authOptions);
+	if (!session) redirect("/login");
 	const pendaftar = await prisma.pendaftarMagang.findMany({
 		orderBy: { createdAt: "desc" },
 	});
@@ -40,6 +42,7 @@ export default async function LayananAdminPage() {
 								<td className="p-4">
 									<p className="font-bold text-gray-900 text-sm">{item.nama}</p>
 									<p className="text-xs text-gray-500">{item.createdAt.toLocaleDateString('id-ID')}</p>
+									<details className="mt-2 text-xs text-gray-600 max-w-sm"><summary className="cursor-pointer text-blue-600">Detail pendaftaran</summary><div className="mt-2 space-y-1"><p>NISN: {item.nisn || "—"}</p><p>Jurusan: {item.jurusan || "—"}</p><p>Durasi: {item.durasi || "—"}</p><p className="whitespace-pre-wrap">Motivasi: {item.motivasi || "—"}</p></div></details>
 								</td>
 								<td className="p-4 text-sm text-gray-700">
 									{item.asalSekolah}
@@ -80,14 +83,14 @@ export default async function LayananAdminPage() {
 											</form>
 										</div>
 									) : (
-										<span className="text-xs text-gray-400 italic">Telah Diproses</span>
+										<form action={async () => { "use server"; await updateStatusMagang(item.id, "MENUNGGU"); }}><button className="text-xs text-blue-600 hover:underline">Buka kembali</button></form>
 									)}
 								</td>
 							</tr>
 						))}
 						{pendaftar.length === 0 && (
 							<tr>
-								<td colSpan={5} className="p-8 text-center text-gray-500">
+								<td colSpan={6} className="p-8 text-center text-gray-500">
 									Belum ada data pendaftar magang.
 								</td>
 							</tr>

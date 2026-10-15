@@ -9,6 +9,7 @@ export async function GET(
   try {
     const resolvedParams = await params;
     const filename = resolvedParams.filename;
+    if (!/^[a-zA-Z0-9_.-]+$/.test(filename) || filename.includes('..')) return new NextResponse('File not found', { status: 404 });
     
     // Path to the file in public/uploads
     const filepath = path.join(process.cwd(), 'public', 'uploads', filename);
@@ -31,11 +32,13 @@ export async function GET(
     else if (ext === '.gif') contentType = 'image/gif';
     else if (ext === '.svg') contentType = 'image/svg+xml';
     else if (ext === '.webp') contentType = 'image/webp';
+    else if (ext === '.pdf') contentType = 'application/pdf';
     
     // Return the file with proper headers
     return new NextResponse(fileBuffer, {
       headers: {
         'Content-Type': contentType,
+        'X-Content-Type-Options': 'nosniff',
         'Cache-Control': 'public, max-age=31536000, immutable',
       },
     });

@@ -1,13 +1,16 @@
+import { getSiteContent } from "../../../lib/content";
 import { prisma } from "../../../lib/prisma";
 import ClientNavigation from "../../components/ClientNavigation";
 import Footer from "../../components/Footer";
 import Link from "next/link";
 import { ArrowLeft, Calendar, Tag } from "lucide-react";
 import { notFound } from "next/navigation";
+import { portfolioCategoryLabel } from "../../../lib/portfolio-model";
 
 export const dynamic = 'force-dynamic';
 
 export default async function PortofolioDetail({ params }: { params: Promise<{ id: string }> }) {
+	const content = await getSiteContent();
 	const resolvedParams = await params;
 	const id = parseInt(resolvedParams.id);
 	if (isNaN(id)) notFound();
@@ -37,8 +40,7 @@ export default async function PortofolioDetail({ params }: { params: Promise<{ i
 			
 			<div className="max-w-4xl mx-auto px-6 mb-8">
 				<Link href="/portofolio" className="inline-flex items-center gap-2 text-blue-600 hover:text-teal-600 font-bold transition-colors">
-					<ArrowLeft size={18} /> Kembali ke Portofolio & Produk
-				</Link>
+					<ArrowLeft size={18} />{content.values["portofolio__id__page_1"]}</Link>
 			</div>
 
 			<section className="px-6 pb-20 max-w-4xl mx-auto">
@@ -48,7 +50,7 @@ export default async function PortofolioDetail({ params }: { params: Promise<{ i
 						{produk.gambar ? (
 							<img src={produk.gambar} alt={produk.nama} className="w-full h-full object-cover" />
 						) : (
-							<div className="w-full h-full flex items-center justify-center text-gray-500">Gambar tidak tersedia</div>
+							<div className="w-full h-full flex items-center justify-center text-gray-500">{content.values["portofolio__id__page_2"]}</div>
 						)}
 					</div>
 
@@ -56,7 +58,7 @@ export default async function PortofolioDetail({ params }: { params: Promise<{ i
 					<div className="p-8 md:p-12">
 						<div className="flex items-center gap-4 mb-4">
 							<span className="bg-teal-100 text-teal-800 text-xs font-bold px-3 py-1.5 rounded-full uppercase tracking-wider flex items-center gap-1">
-								<Tag size={14}/> {produk.kategori.replace('_', ' ')}
+								<Tag size={14}/> {portfolioCategoryLabel(produk.kategori, content.values)}
 							</span>
 							<span className="text-gray-500 text-sm flex items-center gap-1">
 								<Calendar size={14} /> {produk.createdAt.toLocaleDateString("id-ID")}
@@ -69,20 +71,21 @@ export default async function PortofolioDetail({ params }: { params: Promise<{ i
 						
 						<div className="prose prose-lg text-gray-700 max-w-none">
 							<p className="whitespace-pre-wrap leading-relaxed">{produk.deskripsi}</p>
+							{produk.sourceUrl && <a href={produk.sourceUrl} target="_blank" rel="noopener noreferrer" className="inline-flex mt-6 text-blue-600 hover:text-teal-600 font-bold">{content.values.portfolio_source}</a>}
 						</div>
 
 						{/* Navigation Prev / Next */}
 						<div className="grid grid-cols-2 gap-4 mt-12 border-t border-gray-100 pt-8">
 							{prevItem ? (
 								<Link href={`/portofolio/${prevItem.id}`} className="group flex flex-col p-4 bg-gray-50 rounded-2xl hover:bg-teal-50 transition-colors border border-transparent hover:border-teal-100">
-									<span className="text-xs text-gray-500 font-semibold mb-1 flex items-center gap-1"><ArrowLeft size={14}/> Sebelumnya</span>
+									<span className="text-xs text-gray-500 font-semibold mb-1 flex items-center gap-1"><ArrowLeft size={14}/>{content.values["portofolio__id__page_3"]}</span>
 									<span className="font-bold text-gray-900 group-hover:text-teal-700 line-clamp-2">{prevItem.nama}</span>
 								</Link>
 							) : <div></div>}
 							
 							{nextItem ? (
 								<Link href={`/portofolio/${nextItem.id}`} className="group flex flex-col p-4 bg-gray-50 rounded-2xl hover:bg-teal-50 transition-colors text-right items-end border border-transparent hover:border-teal-100">
-									<span className="text-xs text-gray-500 font-semibold mb-1 flex items-center gap-1">Selanjutnya <ArrowLeft size={14} className="rotate-180"/></span>
+									<span className="text-xs text-gray-500 font-semibold mb-1 flex items-center gap-1">{content.values["portofolio__id__page_4"]}<ArrowLeft size={14} className="rotate-180"/></span>
 									<span className="font-bold text-gray-900 group-hover:text-teal-700 line-clamp-2">{nextItem.nama}</span>
 								</Link>
 							) : <div></div>}
